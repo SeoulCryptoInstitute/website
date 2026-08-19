@@ -63,7 +63,9 @@ export default async function LocaleLayout({
   if (!isLocale(locale)) notFound();
 
   return (
-    <html lang={locale === "ko" ? "ko" : "en"}>
+    // globals.css의 `scroll-behavior: smooth`를 Next가 라우트 전환 동안만
+    // 끌 수 있게 알려준다. 없으면 전환 시 스크롤이 문서 맨 아래로 튄다.
+    <html lang={locale === "ko" ? "ko" : "en"} data-scroll-behavior="smooth">
       <head>
         <link rel="preconnect" href="https://cdn.jsdelivr.net" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
