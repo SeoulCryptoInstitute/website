@@ -35,7 +35,7 @@ export async function generateMetadata({
       images: [
         {
           url: `/og-${locale}.png`,
-          width: 1200,
+          width: 1290,
           height: 630,
           alt: "Seoul Crypto Institute",
         },
