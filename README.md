@@ -34,6 +34,8 @@ public/people/         연구위원 포트레이트 (4:5, grayscale은 CSS에서
 
 커스텀 도메인을 붙이면 액션이 알아서 빈 basePath를 넘기므로 코드는 손대지 않는다. Settings > Pages에서 도메인만 등록하면 된다.
 
+임시 github.io 주소로 떠 있는 동안에는 `noindex, nofollow`가 붙는다(`lib/site.ts`의 `IS_TEMPORARY_HOST`). 임시 주소가 먼저 색인되면 도메인 전환 후 정리가 번거롭기 때문이다. 호스트가 `.github.io`인지로 판단하므로 apex든 www든 도메인을 등록하는 순간 색인이 열린다. 프로젝트 페이지는 `/robots.txt`가 조직 루트에 속해 통제할 수 없어서 메타 태그로만 막을 수 있다.
+
 정적 export라 서버가 필요한 기능은 쓸 수 없다 — route handler, middleware, server action, ISR, 그리고 `next/image` 최적화. `next/image`는 `unoptimized`이고 basePath가 자동으로 붙지 않으므로, `public/` 자산을 가리키는 경로는 `lib/site.ts`의 `asset()`을 거쳐야 한다. `/` → `/ko` 리다이렉트도 서버가 없어 `next.config.ts`의 `redirects()` 대신 `public/index.html`이 처리한다.
 
 빌드 결과를 로컬에서 그대로 확인하려면:

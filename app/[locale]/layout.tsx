@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import "../globals.css";
 import { getContent, isLocale, LOCALES } from "@/lib/i18n";
-import { SITE_URL } from "@/lib/site";
+import { IS_TEMPORARY_HOST, SITE_URL } from "@/lib/site";
 
 export function generateStaticParams() {
   return LOCALES.map((locale) => ({ locale }));
@@ -21,6 +21,8 @@ export async function generateMetadata({
     title: content.meta.title,
     description: content.meta.description,
     metadataBase: new URL(SITE_URL),
+    // 임시 github.io 주소가 먼저 색인되면 도메인 전환 후 정리가 번거롭다.
+    robots: IS_TEMPORARY_HOST ? { index: false, follow: false } : undefined,
     alternates: {
       canonical: `/${locale}`,
       languages: { ko: "/ko", en: "/en" },
