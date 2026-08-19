@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Section } from "../ui/Section";
 import { SectionHeading } from "../ui/SectionHeading";
 import { Reveal } from "../ui/Reveal";
+import { asset } from "@/lib/site";
 import type { Member, SiteContent } from "@/content/types";
 
 export function People({ content }: { content: SiteContent }) {
@@ -45,7 +46,7 @@ export function People({ content }: { content: SiteContent }) {
             >
               <div className="bg-paper relative aspect-4/5 overflow-hidden rounded-sm">
                 <Image
-                  src={`/people/${m.slug}.jpg`}
+                  src={asset(`/people/${m.slug}.jpg`)}
                   alt={m.name}
                   fill
                   sizes="(min-width:1280px) 18vw, (min-width:1024px) 22vw, (min-width:640px) 30vw, 44vw"
@@ -95,7 +96,7 @@ export function People({ content }: { content: SiteContent }) {
             <div className="grid gap-7 sm:grid-cols-[10rem_1fr] sm:gap-9">
               <div className="bg-paper relative aspect-4/5 w-32 overflow-hidden rounded-sm sm:w-full">
                 <Image
-                  src={`/people/${open.slug}.jpg`}
+                  src={asset(`/people/${open.slug}.jpg`)}
                   alt={open.name}
                   fill
                   sizes="160px"

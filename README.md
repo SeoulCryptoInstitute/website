@@ -17,10 +17,31 @@ components/brand/      Symbol(Vector Core), Logo
 components/sections/   Hero → Contact 9개 섹션
 components/ui/         Section, SectionHeading, Cta, Reveal
 public/people/         연구위원 포트레이트 (4:5, grayscale은 CSS에서 적용)
-docs/PLAN.md           기획안 · 확정 필요 항목
 ```
 
 카피를 고칠 때는 `content/ko.ts`와 `content/en.ts`를 함께 수정한다. 두 파일은 같은 타입을 만족해야 하므로 한쪽만 필드를 늘리면 타입 에러가 난다.
+
+## 배포
+
+`main`에 푸시하면 GitHub Actions가 정적 export를 만들어 GitHub Pages에 올린다(`.github/workflows/deploy.yml`). 평소 작업은 기본 브랜치인 `dev`에서 하고, 배포할 때 `main`으로 머지한다.
+
+배포 위치에 따라 달라지는 값은 `lib/site.ts` 한 곳에 모여 있고, 실제 값은 워크플로에서 `actions/configure-pages`가 주입한다.
+
+| 환경변수 | 프로젝트 페이지 | 커스텀 도메인 |
+| --- | --- | --- |
+| `NEXT_PUBLIC_BASE_PATH` | `/website` | (빈 값) |
+| `NEXT_PUBLIC_SITE_URL` | `https://seoulcryptoinstitute.github.io/website` | `https://seoulcrypto.institute` |
+
+커스텀 도메인을 붙이면 액션이 알아서 빈 basePath를 넘기므로 코드는 손대지 않는다. Settings > Pages에서 도메인만 등록하면 된다.
+
+정적 export라 서버가 필요한 기능은 쓸 수 없다 — route handler, middleware, server action, ISR, 그리고 `next/image` 최적화. `next/image`는 `unoptimized`이고 basePath가 자동으로 붙지 않으므로, `public/` 자산을 가리키는 경로는 `lib/site.ts`의 `asset()`을 거쳐야 한다. `/` → `/ko` 리다이렉트도 서버가 없어 `next.config.ts`의 `redirects()` 대신 `public/index.html`이 처리한다.
+
+빌드 결과를 로컬에서 그대로 확인하려면:
+
+```bash
+npm run build
+npx serve out
+```
 
 ## 브랜드
 
