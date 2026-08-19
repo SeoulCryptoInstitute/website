@@ -372,10 +372,22 @@ export const en: SiteContent = {
         bio: "He has served as Executive Vice President for Communications at JTBC, Senior Vice President of Communications at Hanssem, and as a reporter at JoongAng Ilbo and JTBC. While at JTBC he ran a crypto project. He is currently president of the full-service PR agency PRLearn, with a particular interest in identifying crypto projects and companies, and CEO of AIBIX Lab, which operates the AIBIX Score, an index of brands' AI competitiveness.",
       },
       {
+        slug: "park-moon-koo",
+        name: "Moon-Koo Park",
+        role: "Deputy CEO, Caspian Group",
+        bio: "After studying international economics and completing graduate work in business, he began his career as a trade specialist, advising on strengthening the global competitiveness of Korean industry. He has since focused on creating new sources of growth by applying behavioral science to two forces reshaping industry: the geoeconomically driven restructuring of global value chains, and the shift toward AI-led digital innovation. His recent work includes designing development roadmaps for resource-rich and manufacturing-underdeveloped economies, and industrial ecosystem design aimed at revitalizing regional economies.",
+      },
+      {
         slug: "park-jong-baek",
         name: "Jong-Baek Park",
         role: "Partner, Bae, Kim & Lee LLC",
         bio: "Since 2016 he has advised on blockchain projects, digital assets, security tokens, DeFi and DAOs, and has presented and moderated at dozens of blockchain seminars and conferences in Korea and abroad. He has served on the Financial Services Commission's public–private joint task force and the National Assembly's legislative drafting task force, and has carried out legislative research commissioned by the Ministry of Science and ICT. He also advises on open-source software compliance and is a member of the Free Software Foundation Europe.",
+      },
+      {
+        slug: "baek-kwang-won",
+        name: "Kwang-Won Baek",
+        role: "CEO, KW.Strategy",
+        bio: "He began as an individual crypto trader in 2016 and founded KW.Strategy, through which he trades digital assets. Investing his own capital, he makes direct investments in crypto and in startups across a number of countries, and acts as an LP in venture capital funds. He also founded and operates Formulalabs in Korea.",
       },
       {
         slug: "oh-hyunok",
@@ -384,16 +396,16 @@ export const en: SiteContent = {
         bio: "Founder of the startup zkrypto, working on blockchain infrastructure, privacy-preserving technologies and the applied services built on them. He developed a blockchain-based zero-knowledge-proof electronic voting system and operates the online voting service used by Korea's National Election Commission. His research interests include blockchain-based financial services and privacy-preserving blockchain services, and he serves as chair of Korea's zero-knowledge proof research society.",
       },
       {
-        slug: "lee-seok-jun",
-        name: "Seok-Jun Lee",
-        role: "Judge",
-        bio: "A specialist in financial law and virtual asset law, he has worked on financial and virtual asset rulings at the Supreme Court of Korea. He has lectured repeatedly on virtual asset rulings and related legal questions at the Judicial Research and Training Institute, the Seoul Southern District Court and other judicial institutions. After serving as a judicial research officer in the commercial division of the Supreme Court, he is currently a Presiding Judge at the Suncheon Branch of the Gwangju District Court.",
-      },
-      {
         slug: "yoo-minho",
         name: "Minho Yoo",
         role: "Chief Strategy Officer, IoTrust",
         bio: "After working as an embedded security developer, he co-founded IoTrust in 2017. He leads strategy for D'CENT, a wallet for individuals, and WEPIN, a wallet for enterprises, and has spent a decade focused on blockchain wallets and nothing else. He takes real pleasure in understanding technology, and runs Blpas, a study group devoted to digging into blockchain, in order to learn and share with others.",
+      },
+      {
+        slug: "lee-seok-jun",
+        name: "Seok-Jun Lee",
+        role: "Judge",
+        bio: "A specialist in financial law and virtual asset law, he has worked on financial and virtual asset rulings at the Supreme Court of Korea. He has lectured repeatedly on virtual asset rulings and related legal questions at the Judicial Research and Training Institute, the Seoul Southern District Court and other judicial institutions. After serving as a judicial research officer in the commercial division of the Supreme Court, he is currently a Presiding Judge at the Suncheon Branch of the Gwangju District Court.",
       },
       {
         slug: "lee-jongsub",
@@ -406,6 +418,12 @@ export const en: SiteContent = {
         name: "Junhaeng Lee",
         role: "CEO, Brightmount",
         bio: "As founder and CEO of Streami, one of Korea's first-generation blockchain startups (2015), he grew GOPAX into one of the country's five largest won-market exchanges. Following customer losses arising from the collapse of FTX, he committed his personal assets and sold the business to Binance in 2023 on the condition that customers be made whole. He has served as vice chairman and head of the blockchain division of the Korea Fintech Industry Association, and led the founding of the Global Blockchain Policy Council (GBPC), SCI's predecessor.",
+      },
+      {
+        slug: "jang-joong-hyuk",
+        name: "Joong-Hyuk Jang",
+        role: "Director, Blockchain Economy Research Institute",
+        bio: "A consultant in IT and telecommunications, he has built his career as a specialist in the convergence of IT, telecom and media. Together with blockchain and finance experts in Korea and abroad, he co-founded Atomrigs Lab, Korea's first company specializing in multi-party secure computation for blockchain, where he served as chief crypto economist. He now runs the Blockchain Economy Research Institute, Korea's only private research institute dedicated to the crypto economy.",
       },
       {
         slug: "jin-changho",
@@ -424,24 +442,6 @@ export const en: SiteContent = {
         name: "Junki Hong",
         role: "CEO, VOGO Fund Labs",
         bio: "He worked in New York and Hong Kong as a capital markets and derivatives specialist, and served as country head of Korea for UBS Group and as head of Korea and Asia for Cumberland DRW, the global digital asset trading firm. He has advised on policy for the Office of the President and the Ministry of Economy and Finance, and now leads VOGO Fund Labs, part of VOGO Asset Management, which researches and develops asset management techniques using AI and blockchain. He holds bachelor's and master's degrees in engineering and an MBA from MIT.",
-      },
-      {
-        slug: "jang-joong-hyuk",
-        name: "Joong-Hyuk Jang",
-        role: "Director, Blockchain Economy Research Institute",
-        bio: "A consultant in IT and telecommunications, he has built his career as a specialist in the convergence of IT, telecom and media. Together with blockchain and finance experts in Korea and abroad, he co-founded Atomrigs Lab, Korea's first company specializing in multi-party secure computation for blockchain, where he served as chief crypto economist. He now runs the Blockchain Economy Research Institute, Korea's only private research institute dedicated to the crypto economy.",
-      },
-      {
-        slug: "baek-kwang-won",
-        name: "Kwang-Won Baek",
-        role: "CEO, KW.Strategy",
-        bio: "He began as an individual crypto trader in 2016 and founded KW.Strategy, through which he trades digital assets. Investing his own capital, he makes direct investments in crypto and in startups across a number of countries, and acts as an LP in venture capital funds. He also founded and operates Formulalabs in Korea.",
-      },
-      {
-        slug: "park-moon-koo",
-        name: "Moon-Koo Park",
-        role: "Deputy CEO, Caspian Group",
-        bio: "After studying international economics and completing graduate work in business, he began his career as a trade specialist, advising on strengthening the global competitiveness of Korean industry. He has since focused on creating new sources of growth by applying behavioral science to two forces reshaping industry: the geoeconomically driven restructuring of global value chains, and the shift toward AI-led digital innovation. His recent work includes designing development roadmaps for resource-rich and manufacturing-underdeveloped economies, and industrial ecosystem design aimed at revitalizing regional economies.",
       },
     ],
   },
