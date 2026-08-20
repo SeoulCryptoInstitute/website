@@ -11,7 +11,8 @@ npm run build
 ## 구조
 
 ```
-app/[locale]/          ko · en 두 로케일. 루트 레이아웃이 여기 있다
+app/(site)/[locale]/   ko · en 두 로케일. 이 그룹의 루트 레이아웃이 <html lang>을 정한다
+app/(root)/            `/` 리다이렉트 스텁. 자기 루트 레이아웃을 따로 가진다
 content/ko.ts,en.ts    모든 카피. types.ts의 SiteContent 형태를 공유한다
 components/brand/      Symbol(Vector Core), Logo
 components/sections/   Hero → Contact 9개 섹션
@@ -36,7 +37,9 @@ public/people/         연구위원 포트레이트 (4:5, grayscale은 CSS에서
 
 임시 github.io 주소로 떠 있는 동안에는 `noindex, nofollow`가 붙는다(`lib/site.ts`의 `IS_TEMPORARY_HOST`). 임시 주소가 먼저 색인되면 도메인 전환 후 정리가 번거롭기 때문이다. 호스트가 `.github.io`인지로 판단하므로 apex든 www든 도메인을 등록하는 순간 색인이 열린다. 프로젝트 페이지는 `/robots.txt`가 조직 루트에 속해 통제할 수 없어서 메타 태그로만 막을 수 있다.
 
-정적 export라 서버가 필요한 기능은 쓸 수 없다 — route handler, middleware, server action, ISR, 그리고 `next/image` 최적화. `next/image`는 `unoptimized`이고 basePath가 자동으로 붙지 않으므로, `public/` 자산을 가리키는 경로는 `lib/site.ts`의 `asset()`을 거쳐야 한다. `/` → `/ko` 리다이렉트도 서버가 없어 `next.config.ts`의 `redirects()` 대신 `public/index.html`이 처리한다.
+정적 export라 서버가 필요한 기능은 쓸 수 없다 — route handler, middleware, server action, ISR, 그리고 `next/image` 최적화. `next/image`는 `unoptimized`이고 basePath가 자동으로 붙지 않으므로, `public/` 자산을 가리키는 경로는 `lib/site.ts`의 `asset()`을 거쳐야 한다.
+
+`/` → `/ko`도 `redirects()`가 안 먹으므로 `app/(root)/`가 meta refresh로 처리한다. 크롤러는 meta refresh를 따라가지 않아서, 도메인만 붙여넣어 공유했을 때 카드가 비지 않도록 이 스텁도 OG 태그를 내보낸다. 로케일 라우트와 루트가 각자 `<html>`을 내보내야 하므로 둘을 서로 다른 라우트 그룹에 두고 루트 레이아웃을 하나씩 갖게 했다.
 
 빌드 결과를 로컬에서 그대로 확인하려면:
 

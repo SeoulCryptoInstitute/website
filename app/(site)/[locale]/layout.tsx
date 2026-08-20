@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import "../globals.css";
+import "../../globals.css";
 import { getContent, isLocale, LOCALES } from "@/lib/i18n";
 import { IS_TEMPORARY_HOST, SITE_URL } from "@/lib/site";
 
