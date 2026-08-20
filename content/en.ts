@@ -438,6 +438,12 @@ export const en: SiteContent = {
         bio: "He has served as president and editor-in-chief of Yonhap Infomax, and has published more than ten books on financial markets, covering foreign exchange and fixed income among other subjects. While at Yonhap Infomax he signed an MOU with Korea University to establish a crypto ratings company, set up a blockchain division, pursued external partnerships and organized conferences. He also acquired and launched a cable television channel specializing in crypto and blockchain.",
       },
       {
+        slug: "philip-gant",
+        name: "Philip Gant",
+        role: "Research Director, Regulatory Ecosystems Group",
+        bio: "He is also an Associate of the Harvard University Asia Center. He previously served as Executive Director, APAC Policy and Partnerships at the Global Blockchain Business Council (GBBC), and as a Postdoctoral Associate at Yale University. Trained as a legal historian of East Asia, he did his undergraduate work at Yale and his Ph.D. at Harvard, living in Korea, China and Japan along the way.",
+      },
+      {
         slug: "hong-junki",
         name: "Junki Hong",
         role: "CEO, VOGO Fund Labs",

@@ -437,6 +437,12 @@ export const ko: SiteContent = {
         bio: "연합인포맥스 사장과 편집국장을 역임했다. 외환·채권 등 금융시장 관련 저서 10여 권을 출간했다. 연합인포맥스 재직 중 크립토 평가회사 설립을 위한 고려대학교와의 MOU 체결, 블록체인 부서 설치 및 외부 제휴 추진, 컨퍼런스 개최 등의 활동을 했다. 특히 크립토 및 블록체인에 특화된 케이블방송 채널을 인수해 출범시켰다.",
       },
       {
+        slug: "philip-gant",
+        name: "필립 갠트",
+        role: "Regulatory Ecosystems Group 리서치 디렉터",
+        bio: "하버드 대학교 아시아센터 Associate를 겸하고 있다. 이전에는 Global Blockchain Business Council(GBBC) APAC 총괄과 예일 대학교 박사후 연구원을 역임했다. 동아시아 법사학자로 훈련받았으며, 예일 대학교 학사와 하버드 대학교 박사 학위를 받았고, 그 과정에서 한국, 중국, 일본에서 생활했다.",
+      },
+      {
         slug: "hong-junki",
         name: "홍준기",
         role: "보고펀드랩스 대표",
