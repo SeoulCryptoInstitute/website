@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { DEFAULT_LOCALE, getContent } from "@/lib/i18n";
-import { asset, SITE_URL } from "@/lib/site";
+import { asset, IS_TEMPORARY_HOST, SITE_URL } from "@/lib/site";
 
 /**
  * `/` -> `/ko`.
@@ -20,15 +20,18 @@ export function generateMetadata(): Metadata {
     title: content.meta.title,
     description: content.meta.description,
     metadataBase: new URL(SITE_URL),
-    // 리다이렉트 스텁이 /ko와 따로 색인될 이유가 없다. 링크는 따라가게 둔다.
-    robots: { index: false, follow: true },
+    // 이 스텁이 /ko와 따로 취급될 이유가 없다. noindex 대신 canonical로 합친다 —
+    // noindex를 존중하는 크롤러(카카오 등)가 공유 카드 자체를 만들지 않을 수 있어서다.
+    alternates: { canonical: `/${DEFAULT_LOCALE}` },
+    // 임시 github.io 주소에서는 로케일 페이지와 마찬가지로 색인을 막는다.
+    robots: IS_TEMPORARY_HOST ? { index: false, follow: false } : undefined,
     openGraph: {
       type: "website",
       siteName: "Seoul Crypto Institute",
       title: content.meta.title,
       description: content.meta.description,
       locale: "ko_KR",
-      url: "/",
+      url: `/${DEFAULT_LOCALE}`,
       images: [
         {
           url: `/og-${DEFAULT_LOCALE}.png`,
