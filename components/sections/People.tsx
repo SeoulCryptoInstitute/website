@@ -32,7 +32,7 @@ function MemberGrid({
   heading: "h3" | "h4";
 }) {
   return (
-    <ul className="mt-12 grid grid-cols-2 gap-x-5 gap-y-10 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+    <ul className="mt-12 grid grid-cols-2 gap-x-5 gap-y-10 sm:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
       {members.map((m, i) => (
         <Reveal as="li" key={m.slug} delay={Math.min(i, 9) * 45}>
           <button
@@ -45,7 +45,7 @@ function MemberGrid({
                 src={asset(`/people/${m.slug}.jpg`)}
                 alt={m.name}
                 fill
-                sizes="(min-width:1280px) 18vw, (min-width:1024px) 22vw, (min-width:640px) 30vw, 44vw"
+                sizes="(min-width:1280px) 15vw, (min-width:1024px) 18vw, (min-width:640px) 23vw, 44vw"
                 className="object-cover object-top grayscale transition-all duration-500 group-hover:scale-[1.03] group-hover:grayscale-0"
               />
               <div
