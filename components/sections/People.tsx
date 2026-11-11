@@ -8,6 +8,67 @@ import { Reveal } from "../ui/Reveal";
 import { asset } from "@/lib/site";
 import type { Member, SiteContent } from "@/content/types";
 
+/** 이름 앞에 SCI 직책을 작게 붙인다(v1.2 표기). 좁으면 직책이 이름 위로 넘어간다. */
+function NameLine({ member, className }: { member: Member; className: string }) {
+  return (
+    <span className={`flex flex-wrap items-baseline gap-x-1.5 ${className}`}>
+      {member.position ? (
+        <span className="text-blue text-[12px] font-semibold tracking-normal">
+          {member.position}
+        </span>
+      ) : null}
+      <span>{member.name}</span>
+    </span>
+  );
+}
+
+function MemberGrid({
+  members,
+  onOpen,
+  heading: Heading,
+}: {
+  members: Member[];
+  onOpen: (m: Member) => void;
+  heading: "h3" | "h4";
+}) {
+  return (
+    <ul className="mt-12 grid grid-cols-2 gap-x-5 gap-y-10 sm:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+      {members.map((m, i) => (
+        <Reveal as="li" key={m.slug} delay={Math.min(i, 9) * 45}>
+          <button
+            type="button"
+            onClick={() => onOpen(m)}
+            className="group w-full cursor-pointer text-left"
+          >
+            <div className="bg-paper relative aspect-4/5 overflow-hidden rounded-sm">
+              <Image
+                src={asset(`/people/${m.slug}.jpg`)}
+                alt={m.name}
+                fill
+                sizes="(min-width:1280px) 15vw, (min-width:1024px) 18vw, (min-width:640px) 23vw, 44vw"
+                className="object-cover object-top grayscale transition-all duration-500 group-hover:scale-[1.03] group-hover:grayscale-0"
+              />
+              <div
+                className="from-navy/45 absolute inset-0 bg-gradient-to-t via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                aria-hidden
+              />
+            </div>
+            <Heading className="mt-4">
+              <NameLine
+                member={m}
+                className="text-navy group-hover:text-blue text-[16px] font-bold tracking-[-0.02em] transition-colors"
+              />
+            </Heading>
+            <p className="text-slate mt-1 text-[13px] leading-[1.5] text-pretty">
+              {m.role}
+            </p>
+          </button>
+        </Reveal>
+      ))}
+    </ul>
+  );
+}
+
 export function People({ content }: { content: SiteContent }) {
   const s = content.people;
   const [open, setOpen] = useState<Member | null>(null);
@@ -36,37 +97,12 @@ export function People({ content }: { content: SiteContent }) {
 
       <p className="text-slate mt-6 text-[13px]">{s.note}</p>
 
-      <ul className="mt-12 grid grid-cols-2 gap-x-5 gap-y-10 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-        {s.members.map((m, i) => (
-          <Reveal as="li" key={m.slug} delay={Math.min(i, 9) * 45}>
-            <button
-              type="button"
-              onClick={() => setOpen(m)}
-              className="group w-full cursor-pointer text-left"
-            >
-              <div className="bg-paper relative aspect-4/5 overflow-hidden rounded-sm">
-                <Image
-                  src={asset(`/people/${m.slug}.jpg`)}
-                  alt={m.name}
-                  fill
-                  sizes="(min-width:1280px) 18vw, (min-width:1024px) 22vw, (min-width:640px) 30vw, 44vw"
-                  className="object-cover object-top grayscale transition-all duration-500 group-hover:scale-[1.03] group-hover:grayscale-0"
-                />
-                <div
-                  className="from-navy/45 absolute inset-0 bg-gradient-to-t via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                  aria-hidden
-                />
-              </div>
-              <h3 className="text-navy group-hover:text-blue mt-4 text-[16px] font-bold tracking-[-0.02em] transition-colors">
-                {m.name}
-              </h3>
-              <p className="text-slate mt-1 text-[13px] leading-[1.5] text-pretty">
-                {m.role}
-              </p>
-            </button>
-          </Reveal>
-        ))}
-      </ul>
+      <MemberGrid members={s.members} onOpen={setOpen} heading="h3" />
+
+      <h3 className="text-navy border-line mt-20 border-t pt-10 text-lg font-bold tracking-[-0.02em]">
+        {s.advisorsTitle}
+      </h3>
+      <MemberGrid members={s.advisors} onOpen={setOpen} heading="h4" />
 
       {open ? (
         <div
@@ -104,8 +140,11 @@ export function People({ content }: { content: SiteContent }) {
                 />
               </div>
               <div>
-                <h3 className="text-navy text-2xl font-bold tracking-[-0.025em]">
-                  {open.name}
+                <h3>
+                  <NameLine
+                    member={open}
+                    className="text-navy text-2xl font-bold tracking-[-0.025em]"
+                  />
                 </h3>
                 <p className="text-blue mt-1.5 text-[14px] font-semibold">
                   {open.role}

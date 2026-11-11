@@ -1,13 +1,17 @@
 import Link from "next/link";
 import { Logo } from "./brand/Logo";
+import { CONTACT_EMAIL } from "@/lib/site";
+import { pagePath, type PageKey } from "@/lib/routes";
 import type { Locale, SiteContent } from "@/content/types";
 
 export function Footer({
   content,
   locale,
+  page,
 }: {
   content: SiteContent;
   locale: Locale;
+  page: PageKey;
 }) {
   const f = content.footer;
   const alt: Locale = locale === "ko" ? "en" : "ko";
@@ -41,10 +45,15 @@ export function Footer({
             <p className="text-[11px] font-bold tracking-[0.16em] text-white/40 uppercase">
               {f.contactLabel}
             </p>
-            <p className="mt-4 text-[14px]">{f.contactPending}</p>
+            <a
+              href={`mailto:${CONTACT_EMAIL}`}
+              className="mt-4 inline-block text-[14px] text-white/80 transition-colors hover:text-white"
+            >
+              {CONTACT_EMAIL}
+            </a>
             <Link
-              href={`/${alt}`}
-              className="mt-6 inline-block text-[13px] font-semibold text-white/70 underline decoration-white/25 underline-offset-4 transition-colors hover:text-white"
+              href={pagePath(alt, page)}
+              className="mt-6 block w-fit text-[13px] font-semibold text-white/70 underline decoration-white/25 underline-offset-4 transition-colors hover:text-white"
             >
               {content.meta.altLocaleLabel}
             </Link>

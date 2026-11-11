@@ -37,3 +37,6 @@ export function absoluteUrl(path: string): string {
 export function asset(path: string): string {
   return `${BASE_PATH}${path}`;
 }
+
+/** 사이트와 공개 PDF에 싣는 유일한 연락처. */
+export const CONTACT_EMAIL = "contact@seoulcrypto.institute";

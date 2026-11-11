@@ -11,25 +11,18 @@ export const en: SiteContent = {
 
   nav: {
     items: [
-      { id: "why-now", label: "Why Now" },
-      { id: "korea", label: "Korea" },
-      { id: "vision", label: "Vision" },
-      { id: "agenda", label: "Agenda" },
-      { id: "work", label: "How We Work" },
-      { id: "roadmap", label: "Roadmap" },
-      { id: "people", label: "People" },
-      { id: "insights", label: "Insights" },
+      { page: "home", label: "About SCI" },
+      { page: "home", hash: "people", label: "Fellows" },
+      { page: "membership", label: "Join & Support" },
+      { page: "media", label: "News & Activities" },
     ],
-    cta: "Get in touch",
+    cta: "CONTACT",
     menu: "Open menu",
     close: "Close menu",
   },
 
-  announce: {
-    text: "Crypto Hub Vision Paper 1.0 — coming soon",
-    cta: "Details",
-    href: "#insights",
-  },
+  // 공지줄. 다음 공지가 생기면 { text, cta, href }를 넣는다.
+  announce: null,
 
   hero: {
     eyebrow: "Seoul Crypto Institute",
@@ -37,7 +30,7 @@ export const en: SiteContent = {
     definition:
       "SCI is the intellectual and practical center of gravity for Korea's emergence as a leading jurisdiction in digital assets and the financial order to come.",
     lead: "We are launching not as another think tank, but as an action tank driving the crypto transformation of Korean finance.",
-    primary: { label: "Vision Paper 1.0", href: "#insights" },
+    primary: { label: "SCI Introduction", href: "/files/sci-introduction-en.pdf" },
     secondary: { label: "Work with SCI", href: "#contact" },
   },
 
@@ -362,92 +355,124 @@ export const en: SiteContent = {
       {
         slug: "kang-hyoung-goo",
         name: "Hyoung-Goo Kang",
+        position: "Vice President",
         role: "Professor, Hanyang University School of Business",
-        bio: "He previously worked on the quantitative strategy team at Lehman Brothers' Asia headquarters and at Accenture, and is an entrepreneur who founded and exited Handa Partners, a machine-learning-based fintech company. A professor in Hanyang University's Department of Computational Finance, he has served as an advisory member to Korea's financial supervisory authorities (FSS/FSC), as an advisor to the Democratic Party's Digital Asset Task Force, and as president of the Korean Financial Management Association (2024).",
+        bio: "Previously with the quantitative strategy team of Lehman Brothers Asia and with Accenture. Founded and exited Handa Partners, a machine learning–based fintech company. Professor in the Department of Computational Finance and Financial Engineering at Hanyang University; has served as an advisory member to the Financial Supervisory Service, as an adviser to a National Assembly digital asset task force, and as president of the Korean Financial Management Association (2024).",
       },
       {
         slug: "kim-joon-hyun",
         name: "Joon-Hyun Kim",
-        role: "CEO, AIBIX Lab",
-        bio: "He has served as Executive Vice President for Communications at JTBC, Senior Vice President of Communications at Hanssem, and as a reporter at JoongAng Ilbo and JTBC. While at JTBC he ran a crypto project. He is currently president of the full-service PR agency PRLearn, with a particular interest in identifying crypto projects and companies, and CEO of AIBIX Lab, which operates the AIBIX Score, an index of brands' AI competitiveness.",
+        position: "Secretary General",
+        role: "Chief Executive Officer, AIBIX Lab",
+        bio: "Formerly executive vice president for communications at JTBC, executive director of communications at Hanssem, and a reporter with the JoongAng Ilbo and JTBC. Led a digital asset project while at JTBC. Currently president of a public relations agency and chief executive of AIBIX Lab, which operates AIBIX Score, an index of brand competitiveness in artificial intelligence.",
       },
       {
         slug: "park-moon-koo",
         name: "Moon-Koo Park",
-        role: "Deputy CEO, Caspian Group",
-        bio: "After studying international economics and completing graduate work in business, he began his career as a trade specialist, advising on strengthening the global competitiveness of Korean industry. He has since focused on creating new sources of growth by applying behavioral science to two forces reshaping industry: the geoeconomically driven restructuring of global value chains, and the shift toward AI-led digital innovation. His recent work includes designing development roadmaps for resource-rich and manufacturing-underdeveloped economies, and industrial ecosystem design aimed at revitalizing regional economies.",
+        role: "Deputy President, Caspian Group",
+        bio: "Studied international economics and business administration, and advised on strengthening the international competitiveness of Korean industry as a trade specialist. His work addresses the creation of new growth capacity by combining behavioral science with the geoeconomically driven reconfiguration of global industrial value chains and with AI-led digital innovation. Designs development roadmaps for resource-rich economies and for economies with underdeveloped manufacturing.",
       },
       {
         slug: "park-jong-baek",
         name: "Jong-Baek Park",
+        position: "President",
         role: "Partner, Bae, Kim & Lee LLC",
-        bio: "Since 2016 he has advised on blockchain projects, digital assets, security tokens, DeFi and DAOs, and has presented and moderated at dozens of blockchain seminars and conferences in Korea and abroad. He has served on the Financial Services Commission's public–private joint task force and the National Assembly's legislative drafting task force, and has carried out legislative research commissioned by the Ministry of Science and ICT. He also advises on open-source software compliance and is a member of the Free Software Foundation Europe.",
+        bio: "Has advised on distributed ledger projects, digital assets, security tokens, decentralized finance, and decentralized autonomous organizations since 2016. Has participated in the Financial Services Commission’s public–private task force, a National Assembly legislative drafting task force, and commissioned legislative research for the Ministry of Science and ICT. Member of Global Blockchain Convergence and of Free Software Foundation Europe.",
       },
       {
         slug: "baek-kwang-won",
         name: "Kwang-Won Baek",
         role: "CEO, KW.Strategy",
-        bio: "He began as an individual crypto trader in 2016 and founded KW.Strategy, through which he trades digital assets. Investing his own capital, he makes direct investments in crypto and in startups across a number of countries, and acts as an LP in venture capital funds. He also founded and operates Formulalabs in Korea.",
+        bio: "Began as an individual crypto trader in 2016 and founded KW.Strategy, through which he trades digital assets. Makes direct investments of his own capital in crypto and in startups across a number of countries, and acts as an LP in venture capital funds. Also founded and operates Formulalabs in Korea.",
+      },
+      {
+        slug: "ahn-soo-hyun",
+        name: "Soo-Hyun Ahn",
+        role: "Professor, Hankuk University of Foreign Studies Law School",
+        bio: "Has served on the dispute mediation, sanctions review, supervisory advisory, and blockchain advisory committees of the Financial Supervisory Service; on the Financial Development Review Committee of the Financial Services Commission; and as a legal adviser to the Bank of Korea on central bank digital currency. Currently a non-executive director of the Digital Asset Protection Foundation, an ombudsman of the Financial Supervisory Service, and a member of the Financial Hub Promotion Committee of the Financial Services Commission, advising widely on financial consumer protection, digital finance, and financial policy and industry.",
       },
       {
         slug: "oh-hyunok",
-        name: "Hyunok Oh",
-        role: "Professor, College of Engineering, Hanyang University",
-        bio: "Founder of the startup zkrypto, working on blockchain infrastructure, privacy-preserving technologies and the applied services built on them. He developed a blockchain-based zero-knowledge-proof electronic voting system and operates the online voting service used by Korea's National Election Commission. His research interests include blockchain-based financial services and privacy-preserving blockchain services, and he serves as chair of Korea's zero-knowledge proof research society.",
+        name: "Hyun-Ok Oh",
+        role: "Professor, Hanyang University College of Engineering",
+        bio: "Founder of Zkrypto, which develops distributed ledger and privacy-preserving technologies. Developed a distributed ledger–based electronic voting system using zero-knowledge proofs and operates the online voting service used by the National Election Commission. President of the Korean research society on zero-knowledge proofs.",
       },
       {
         slug: "yoo-minho",
-        name: "Minho Yoo",
+        name: "Min-Ho Yoo",
         role: "Chief Strategy Officer, IoTrust",
-        bio: "After working as an embedded security developer, he co-founded IoTrust in 2017. He leads strategy for D'CENT, a wallet for individuals, and WEPIN, a wallet for enterprises, and has spent a decade focused on blockchain wallets and nothing else. He takes real pleasure in understanding technology, and runs Blpas, a study group devoted to digging into blockchain, in order to learn and share with others.",
+        bio: "Began his career as an embedded security developer and co-founded IoTrust in 2017. Leads strategy for DCENT, a consumer wallet, and DCENT Enterprise, an enterprise wallet, having worked in digital asset wallets for a decade. Runs a study group on distributed ledger technology.",
       },
       {
         slug: "lee-seok-jun",
         name: "Seok-Jun Lee",
-        role: "Judge",
-        bio: "A specialist in financial law and virtual asset law, he has worked on financial and virtual asset rulings at the Supreme Court of Korea. He has lectured repeatedly on virtual asset rulings and related legal questions at the Judicial Research and Training Institute, the Seoul Southern District Court and other judicial institutions. After serving as a judicial research officer in the commercial division of the Supreme Court, he is currently a Presiding Judge at the Suncheon Branch of the Gwangju District Court.",
-      },
-      {
-        slug: "lee-jongsub",
-        name: "Jongsub Lee",
-        role: "Professor, Seoul National University Business School",
-        bio: "He has published extensively in the world's leading finance journals, including the Journal of Finance, and is recognized internationally as an authority on digital finance, banking and fintech. He has served on the Financial Services Commission's public–private virtual asset task force and as a fiscal policy advisor to the Ministry of Economy and Finance. He is the Korea representative of the Global Blockchain Business Council (GBBC) and a core member of the Crypto and Blockchain Economics Research (CBER) Forum.",
+        role: "Presiding Judge, Suncheon Branch, Gwangju District Court",
+        bio: "Specializes in financial law and the law of digital assets, and conducted research on judgments in these fields at the Supreme Court. Has lectured on legal questions concerning digital assets at the Judicial Research and Training Institute, the Seoul Southern District Court, and elsewhere. Formerly a judicial research officer in the commercial division of the Supreme Court.",
       },
       {
         slug: "lee-junhaeng",
         name: "Junhaeng Lee",
-        role: "CEO, Brightmount",
-        bio: "As founder and CEO of Streami, one of Korea's first-generation blockchain startups (2015), he grew GOPAX into one of the country's five largest won-market exchanges. Following customer losses arising from the collapse of FTX, he committed his personal assets and sold the business to Binance in 2023 on the condition that customers be made whole. He has served as vice chairman and head of the blockchain division of the Korea Fintech Industry Association, and led the founding of the Global Blockchain Policy Council (GBPC), SCI's predecessor.",
+        role: "Chief Executive Officer, Brightmount",
+        bio: "Founder of Streami, established in 2015 among the first generation of distributed ledger companies in Korea, which he built into GOPAX, one of the five principal won-denominated digital asset exchanges. Following the collapse of FTX, he committed personal assets to compensating affected customers and sold the business in 2023 on terms providing for their full repayment. Led the establishment of the Global Blockchain Policy Council, the predecessor of SCI.",
+      },
+      {
+        slug: "lee-hyo-jin",
+        name: "Hyo-Jin Lee",
+        role: "Adjunct Professor, Korea University Graduate School of Information Security",
+        bio: "Brings more than thirty years of public service, including at the Ministry of Information and Communication and as head of the Economic Coordination Office at the Office of the Prime Minister, together with broad expertise in digital asset regulation and in distributed ledger technology and industrial policy. At the Office of the Prime Minister, coordinated national policy on the economy and finance and on information and communications technology and artificial intelligence. In 2021, worked with the Financial Services Commission, the Ministry of Science and ICT, and other bodies to formulate the government-wide plan for the management of digital asset trading, and helped establish the regime through implementation of the reporting system for virtual asset service providers.",
       },
       {
         slug: "jang-joong-hyuk",
-        name: "Joong-Hyuk Jang",
+        name: "Joong-Hyuk Chang",
+        position: "Vice President",
         role: "Director, Blockchain Economy Research Institute",
-        bio: "A consultant in IT and telecommunications, he has built his career as a specialist in the convergence of IT, telecom and media. Together with blockchain and finance experts in Korea and abroad, he co-founded Atomrigs Lab, Korea's first company specializing in multi-party secure computation for blockchain, where he served as chief crypto economist. He now runs the Blockchain Economy Research Institute, Korea's only private research institute dedicated to the crypto economy.",
+        bio: "Has worked as a consultant in the convergence of information technology, telecommunications, and media. Co-founded Atomrigs Lab, the first Korean company specializing in secure multi-party computation for distributed ledgers, where he served as chief crypto-economist. Founded and directs the only private research institute in Korea dedicated to crypto-economics.",
       },
       {
         slug: "jin-changho",
-        name: "Changho Jin",
-        role: "Head of Corporate Strategy and Deputy CEO, EnCore",
-        bio: "For 19 years he worked at global consulting firms (Accenture, EY, BCG) as a digital and technology consultant and partner. Over the past six years he led blockchain consulting engagements for more than 50 companies and public institutions, including CBDC advisory work for the Bank of Korea and blockchain and Web3 new-business strategy projects for a number of major Korean corporates. He currently leads business development for blockchain, AI and data-driven solutions at SK Group.",
+        name: "Chang-Ho Jin",
+        role: "Deputy President and Head of Management Strategy, EnCore",
+        bio: "Worked for nineteen years as a digital and technology consultant and partner at Accenture, EY, and BCG. Led distributed ledger consulting engagements for some fifty companies and institutions and served as project manager for the Bank of Korea’s central bank digital currency consulting engagement. Currently leads development of artificial intelligence, data, and distributed ledger solutions at SK Group.",
       },
       {
         slug: "choi-ki-eok",
         name: "Ki-Eok Choi",
         role: "President, Hans Economy",
-        bio: "He has served as president and editor-in-chief of Yonhap Infomax, and has published more than ten books on financial markets, covering foreign exchange and fixed income among other subjects. While at Yonhap Infomax he signed an MOU with Korea University to establish a crypto ratings company, set up a blockchain division, pursued external partnerships and organized conferences. He also acquired and launched a cable television channel specializing in crypto and blockchain.",
+        bio: "Formerly president and chief editor of Yonhap Infomax. Author of some ten books on foreign exchange, fixed income, and financial markets. While at Yonhap Infomax, pursued a memorandum of understanding with Korea University toward the establishment of a digital asset rating company, established a distributed ledger division, and organized conferences, and launched a cable television channel specializing in digital assets.",
+      },
+      {
+        slug: "choi-chul",
+        name: "Chul Choi",
+        role: "Professor, Hankuk University of Foreign Studies Law School; Solicitor (England and Wales)",
+        bio: "Specializes in intellectual property finance and has taken part in policy research and projects for the Presidential Council on Intellectual Property, the Ministry of Intellectual Property, the World Intellectual Property Organization (WIPO), KIPnet, IPFF, and other institutions in Korea and abroad. Has taught intellectual property law and international finance law at Hankuk University of Foreign Studies for twenty years; before joining the university, practiced international finance as a solicitor at the London head office of Allen & Overy.",
       },
       {
         slug: "philip-gant",
         name: "Philip Gant",
         role: "Research Director, Regulatory Ecosystems Group",
-        bio: "He is also an Associate of the Harvard University Asia Center. He previously served as Executive Director, APAC Policy and Partnerships at the Global Blockchain Business Council (GBBC), and as a Postdoctoral Associate at Yale University. Trained as a legal historian of East Asia, he did his undergraduate work at Yale and his Ph.D. at Harvard, living in Korea, China and Japan along the way.",
+        bio: "Associate of the Asia Center at Harvard University. Previously head of APAC for the Global Blockchain Business Council and a postdoctoral fellow at Yale University. Trained as a legal historian of East Asia; holds a bachelor’s degree from Yale University and a doctorate from Harvard University.",
       },
       {
         slug: "hong-junki",
-        name: "Junki Hong",
-        role: "CEO, VOGO Fund Labs",
-        bio: "He worked in New York and Hong Kong as a capital markets and derivatives specialist, and served as country head of Korea for UBS Group and as head of Korea and Asia for Cumberland DRW, the global digital asset trading firm. He has advised on policy for the Office of the President and the Ministry of Economy and Finance, and now leads VOGO Fund Labs, part of VOGO Asset Management, which researches and develops asset management techniques using AI and blockchain. He holds bachelor's and master's degrees in engineering and an MBA from MIT.",
+        name: "Jun-Ki Hong",
+        position: "Vice President",
+        role: "Chief Executive Officer, VOGO Fund Labs",
+        bio: "Worked in capital markets and derivatives in New York and Hong Kong, and served as country head for Korea at UBS Group and as head of Korea and Asia for Cumberland DRW. Has advised on economic policy for the Office of the President and the Ministry of Economy and Finance. Currently leads VOGO Fund Labs, which researches asset management techniques using artificial intelligence and distributed ledger technology.",
+      },
+    ],
+    advisorsTitle: "SCI Advisers",
+    advisors: [
+      {
+        slug: "oh-se-hyun",
+        name: "Se-Hyun Oh",
+        role: "Visiting Professor, Seoul National University Graduate School of Engineering Practice",
+        bio: "Formerly a senior vice president at KT and an executive vice president at SK Telecom. Has served on the deliberative committee of the Presidential Advisory Council on Science and Technology and as president of the Open Blockchain and DID Association. A regular member of the National Academy of Engineering of Korea, active in its technology management and policy division.",
+      },
+      {
+        slug: "yesha-yadav",
+        name: "Yesha Yadav",
+        role: "Professor, Vanderbilt Law School",
+        bio: "Specializes in financial market regulation, securities regulation, and corporate bankruptcy, with a focus on market structure and digital assets; her research on US Treasury market regulation won Vanderbilt University’s Chancellor Research Award. Has served on the Technology Advisory Committee of the Commodity Futures Trading Commission (CFTC), including as vice-chair of its Distributed Ledger Technology Subcommittee, and sits on the Board of Advisors of the Digital Dollar Project. At Vanderbilt, co-organized with the Blockchain Association the inaugural Digital Assets and Emerging Technology Policy Summit.",
       },
     ],
   },
@@ -460,10 +485,11 @@ export const en: SiteContent = {
     comingSoon: "Coming soon",
     items: [
       {
-        tag: "White Paper",
-        title: "Crypto Hub Vision Paper 1.0",
-        body: "SCI's first public document, setting out the strategy and legislative agenda for Korea's emergence as a G2 crypto hub.",
-        status: "Coming soon",
+        tag: "Introduction",
+        title: "SCI Introduction",
+        body: "SCI's official introduction: why it is needed now, what it researches and proposes, how it works and who is involved (v1.2).",
+        status: "Download PDF",
+        href: "/files/sci-introduction-en.pdf",
       },
       {
         tag: "Policy Brief",
@@ -504,8 +530,162 @@ export const en: SiteContent = {
         body: "Interviews, contributed articles and requests for materials.",
       },
     ],
-    contactNote:
-      "Contact channels are being set up. Details will be published here as soon as they are available.",
+    inquiryLabel: "Contact",
+  },
+
+  pages: {
+    membership: {
+      title: "Join & Support — SCI · Seoul Crypto Institute",
+      description:
+        "How to join SCI as an individual or corporate member, or support its work: fees, benefits, the application process, supporter tiers and principles, with downloadable guides.",
+    },
+    media: {
+      title: "News & Activities — SCI · Seoul Crypto Institute",
+      description:
+        "SCI's activities and press coverage, starting with the October 2026 launch seminar.",
+    },
+    contact: {
+      title: "Contact — SCI · Seoul Crypto Institute",
+      description:
+        "Press, membership, sponsorship and research enquiries: contact@seoulcrypto.institute.",
+    },
+  },
+
+  contactPage: {
+    kicker: "Contact",
+    title: "Contact SCI",
+    lead: "We take every enquiry at a single address. Write to us and we will get back to you.",
+    emailLabel: "Email",
+    topicsTitle: "What to write to us about",
+    topics: [
+      {
+        title: "Press & media",
+        body: "Interviews, contributed articles and requests for materials.",
+      },
+      {
+        title: "Membership & support",
+        body: "Individual and corporate membership, and supporting SCI.",
+        link: { label: "See how to join", page: "membership" },
+      },
+      {
+        title: "Research, talks & other",
+        body: "Joint research, policy collaboration, speaking requests and anything else.",
+      },
+    ],
+  },
+
+  membership: {
+    kicker: "Join & Support",
+    title: "Join & Support SCI",
+    lead: "Take part in SCI's research and policy work, as a member or as a supporter.",
+    jump: { join: "Membership", support: "Support" },
+    join: {
+      title: "Membership",
+      lead: "SCI has Individual and Corporate Members. Both are full members with voting rights in the General Assembly.",
+      head: ["Category", "Eligibility", "Annual fee"],
+      types: [
+        {
+          name: "Individual Member",
+          target:
+            "Individuals who share SCI's purpose and wish to take part in and support it as members",
+          fee: "USD 200",
+        },
+        {
+          name: "Corporate Member",
+          target:
+            "Korean and foreign companies operating in the Korean market, in fields such as manufacturing, trade, finance, securities, content and culture, exchanges and blockchain technology, that face the constraints of current rules directly in their operations",
+          fee: "USD 1,000",
+        },
+      ],
+      feeNote: "SCI provides payment details once the application is approved.",
+      benefitsTitle: "Member benefits",
+      benefits: [
+        "Priority access to SCI newsletters and research reports",
+        "Priority admission to SCI seminars, conferences and workshops",
+        "Attendance and a vote at the General Assembly, SCI's supreme deliberative body",
+      ],
+      stepsTitle: "Becoming a member",
+      steps: [
+        {
+          title: "Application",
+          body: "Fill in the application form in the guide, scan or photograph it, and email it to SCI.",
+        },
+        {
+          title: "Review and approval",
+          body: "SCI reviews the application and informs the applicant of its decision. The Board of Directors approves Corporate Members.",
+        },
+        {
+          title: "Payment of fees",
+          body: "Upon approval, SCI sends membership fee payment instructions.",
+        },
+      ],
+      apply: null,
+      pdfLabel: "Guide and application form (PDF)",
+      pdf: "/files/sci-membership-guide-en.pdf",
+    },
+    support: {
+      title: "Support",
+      lead: "SCI welcomes contributions from those who share its purpose, to support its research, education, and policy, regulatory and legislative proposals. Any individual or organization may become a supporter; SCI membership is not required.",
+      principlesTitle: "Principles",
+      principles: [
+        {
+          title: "Unrestricted contributions",
+          body: "Contributions may not be tied to any specific SCI activity.",
+        },
+        {
+          title: "Commissioned research",
+          body: "Funding tied to a specific research project is arranged separately as commissioned research, under the same principle of research independence.",
+        },
+        {
+          title: "Research independence",
+          body: "Supporters may propose research and education topics but take no part in determining research conclusions or SCI's policy recommendations.",
+        },
+        {
+          title: "Contribution cap",
+          body: "No single supporter may account for more than 30 percent of SCI's total contributions in any year, measured at year-end.",
+        },
+        {
+          title: "Funding disclosure",
+          body: "SCI discloses the composition of its funding and the scale of principal contributions in its annual report.",
+        },
+      ],
+      head: ["Tier", "What sets it apart", "Annual contribution"],
+      tiers: [
+        {
+          name: "Platinum Supporter",
+          amount: "KRW 300 million",
+          highlight:
+            "Proposes research, education, seminar, and policy or legislative topics (once a year each), and new Industry Councils; seats on 3 council steering committees",
+        },
+        {
+          name: "Gold Supporter",
+          amount: "KRW 100 million",
+          highlight:
+            "Proposes a research, education or seminar topic once a year; seats on 2 council steering committees",
+        },
+        {
+          name: "Silver Supporter",
+          amount: "KRW 30 million",
+          highlight: "Takes part in the deliberations of 1 Industry Council",
+        },
+      ],
+      commonNote:
+        "All tiers receive priority admission to SCI programs and seminars, invitations to closed-door meetings, early access to research reports and regulatory updates, the chance to suggest research and education topics to the Industry Councils, and briefings on the councils' reform work with the opportunity to comment.",
+      usdNote: "Contributions may also be made in the USD equivalent.",
+      pdfLabel: "Sponsorship guide (PDF)",
+      pdf: "/files/sci-sponsorship-guide-en.pdf",
+    },
+    inquiryLabel: "Membership and support enquiries",
+  },
+
+  media: {
+    kicker: "News & Activities",
+    title: "News & Activities",
+    lead: "SCI's activities and the press coverage of each, grouped by event. The articles are in Korean.",
+    coverageLabel: "Covered by {n} outlets",
+    sameStoryLabel: "Also in",
+    photosLabel: "Photo coverage",
+    koreanTag: "Korean",
   },
 
   footer: {
@@ -517,7 +697,6 @@ export const en: SiteContent = {
       "Jung-gu, Seoul, Korea",
     ],
     contactLabel: "Contact",
-    contactPending: "To be announced",
     copyright: "Seoul Crypto Institute",
   },
 };

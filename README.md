@@ -1,6 +1,6 @@
 # Seoul Crypto Institute — Website
 
-SCI 공식 웹사이트. 한/영 원페이저.
+SCI 공식 웹사이트. 한/영 메인 페이지와 사원가입·후원, 언론보도·활동, CONTACT 하위 페이지.
 
 ```bash
 npm install
@@ -12,16 +12,38 @@ npm run build
 
 ```
 app/(site)/[locale]/   ko · en 두 로케일. 이 그룹의 루트 레이아웃이 <html lang>을 정한다
+  membership/ media/ contact/   하위 페이지. Header → PageHeader → 본문 → Footer 틀을 같이 쓴다
 app/(root)/            `/` 리다이렉트 스텁. 자기 루트 레이아웃을 따로 가진다
 app/robots.ts          /robots.txt, app/sitemap.ts → /sitemap.xml (빌드 시 정적 파일로 생성)
 content/ko.ts,en.ts    모든 카피. types.ts의 SiteContent 형태를 공유한다
+content/press.ts       언론보도 목록. 국·영문이 같이 쓴다(새 행사는 PRESS_EVENTS 맨 앞에 더한다)
+lib/routes.ts          페이지 목록(PAGES)과 경로(pagePath). 메뉴·언어 전환·sitemap이 여기서 경로를 만든다
+lib/metadata.ts        하위 페이지의 title·description·canonical·hreflang·OG
 components/brand/      Symbol(Vector Core), Logo
-components/sections/   Hero → Contact 9개 섹션
+components/sections/   메인 9개 섹션(Hero → Contact)과 하위 페이지 본문(MembershipGuide, PressEvents, ContactDetails)
+components/PageHeader  하위 페이지 맨 위의 제목 띠
 components/ui/         Section, SectionHeading, Cta, Reveal
-public/people/         연구위원 포트레이트 (4:5, grayscale은 CSS에서 적용)
+public/people/         연구위원·고문 포트레이트 (4:5 JPEG, slug.jpg. grayscale은 CSS에서 적용)
+public/files/          내려받는 PDF (소개서, 가입·후원 안내 웹용 판)
 ```
 
 카피를 고칠 때는 `content/ko.ts`와 `content/en.ts`를 함께 수정한다. 두 파일은 같은 타입을 만족해야 하므로 한쪽만 필드를 늘리면 타입 에러가 난다.
+
+## 테스트
+
+```bash
+npm test                 # 콘텐츠·경로 단위 테스트 (tests/*.test.ts)
+npm run build && npm run test:out   # 빌드된 out/ 점검 (tests/out.check.ts)
+```
+
+`test:out`은 8개 페이지가 다 나왔는지, canonical·hreflang, 언어 전환, 언론보도 링크 30개, sitemap, 개인 연락처가 없는지를 본다. 미리보기 빌드는 basePath를 넘겨서 확인한다. 이때는 모든 내부 `href`·`src`가 basePath로 시작하는지도 본다.
+
+```bash
+NEXT_PUBLIC_BASE_PATH=/website-preview NEXT_PUBLIC_SITE_URL=https://seoulcryptoinstitute.github.io/website-preview npm run build
+BASE_PATH=/website-preview SITE=https://seoulcryptoinstitute.github.io/website-preview npm run test:out
+```
+
+테스트는 Node 내장 `node:test`로 TypeScript를 바로 읽는다(Node 22.18 이상). 그래서 테스트가 읽는 `content/`·`lib/routes.ts`에는 런타임 import를 두지 않는다(타입 import는 된다).
 
 ## 배포
 
@@ -50,7 +72,7 @@ public/people/         연구위원 포트레이트 (4:5, grayscale은 CSS에서
 
 github.io 주소, 즉 미리보기에는 `noindex, nofollow`가 붙는다(`lib/site.ts`의 `IS_TEMPORARY_HOST`). 미리보기가 색인되면 운영 사이트와 중복 콘텐츠가 되기 때문이다. 호스트가 `.github.io`인지로 판단하므로, 미리보기에 도메인을 붙이면 색인이 열린다는 점에 주의한다. 프로젝트 페이지의 `/robots.txt`는 조직 루트에 속해 통제할 수 없어서 메타 태그로만 막을 수 있다.
 
-`/robots.txt`와 `/sitemap.xml`은 `app/robots.ts`, `app/sitemap.ts`가 빌드 시 만든다. 페이지를 새로 만들면 `sitemap.ts`에도 넣는다.
+`/robots.txt`와 `/sitemap.xml`은 `app/robots.ts`, `app/sitemap.ts`가 빌드 시 만든다. 페이지를 새로 만들면 `lib/routes.ts`의 `PAGES`에 넣는다. sitemap과 메뉴 경로가 여기서 나온다.
 
 정적 export라 서버가 필요한 기능은 쓸 수 없다 — route handler, middleware, server action, ISR, 그리고 `next/image` 최적화. robots·sitemap 같은 메타데이터 라우트도 `export const dynamic = "force-static"`을 붙여야 빌드된다. `next/image`는 `unoptimized`이고 basePath가 자동으로 붙지 않으므로, `public/` 자산을 가리키는 경로는 `lib/site.ts`의 `asset()`을 거쳐야 한다.
 
@@ -61,6 +83,62 @@ github.io 주소, 즉 미리보기에는 `noindex, nofollow`가 붙는다(`lib/s
 ```bash
 npm run build
 npx serve out
+```
+
+## 내려받는 PDF (`public/files/`)
+
+| 파일 | 원본 (sci-docs) |
+| --- | --- |
+| `sci-introduction-{ko,en}.pdf` | `introduction/final/SCI_소개서_한글_v1.2_261024.pdf`, `SCI_Introduction_EN_v1.2_261024.pdf` 그대로 |
+| `sci-membership-guide-{ko,en}.pdf` | `membership/revision/SCI_사원가입안내_v1.2_261106`, `SCI_Membership_Guide_EN_v1.2_261106`의 웹용 판 |
+| `sci-sponsorship-guide-{ko,en}.pdf` | `sponsorship/revision/SCI_후원안내_v1.6_261106`, `SCI_Sponsorship_Guide_EN_v1.6_261106`의 웹용 판 |
+
+웹용 판은 원본과 내용이 같고 연락처만 다르다. 원본의 문의 표(사무총장·사무국장 휴대폰과 개인 메일)와 가입 신청서 제출처를 `contact@seoulcrypto.institute` 하나로 바꿨다. 개인 연락처는 사이트에도 PDF에도 올리지 않는다.
+
+### 웹용 PDF 다시 만들기
+
+안내서가 새 버전으로 바뀌면 sci-docs의 빌드 도구로 다시 만든다. sci-docs 원본은 건드리지 않고, 밖의 작업 폴더에서 빌더 복사본만 고친다.
+
+```sh
+DOCS=~/dev/sci/sci-docs
+W=$(mktemp -d)                                  # sci-docs 밖의 작업 폴더
+zsh $DOCS/tools/setup.sh $W/tool                 # docx(npm), Pretendard를 넣은 LibreOffice 프로필
+
+for p in membership sponsorship; do
+  mkdir -p $W/$p/revision
+  cp -R $DOCS/$p/assets $W/$p/                   # 빌더·배너·QR 복사본
+  cp $DOCS/$p/revision/*.pdf $W/$p/revision/     # 원본과 비교하려고 함께 둔다
+done
+```
+
+복사본 빌더 4개(`$W/{membership,sponsorship}/assets/build_docx{,_en}.js`)를 고친다.
+
+- `SUBMIT_EMAIL`(가입안내)을 `"contact@seoulcrypto.institute"`로 바꾼다.
+- `CONTACTS`를 한 행으로 바꾼다. 국문은 `[["SCI 사무국", "contact@seoulcrypto.institute"]]`, 영문은 `[["SCI Secretariat", "contact@seoulcrypto.institute"]]`이다.
+- 바로 아래 `cw`는 `[2000, TEXT_W - 2000]`로 바꾼다.
+- 표 머리글은 `["구분", "이메일"]` / `["Role", "Email"]`로 바꾼다.
+- 행 서식의 `i === 1 ? { bold … }` 분기를 지운다.
+- 국문 가입안내 별지 하단 문장도 고친다. `${SUBMIT_EMAIL}으로`를 `${SUBMIT_EMAIL}로`로 바꾸고, 같은 줄의 `${FORM_URL}`을 `${FORM_URL.replace("https://", "")}`로 바꾼다. 주소가 길어져 줄이 넘치면 신청서가 4쪽이 되기 때문이다.
+
+빌드하고 원본과 비교한다. 결과는 `$W/<p>/revision/<이름>_web.pdf`에 생긴다.
+
+```sh
+SCRATCH=$W/tool PROJ=$W/membership  BUILDER=build_docx.js    zsh $DOCS/tools/build.sh SCI_사원가입안내_v1.2_261106_web SCI_사원가입안내_v1.2_261106
+SCRATCH=$W/tool PROJ=$W/membership  BUILDER=build_docx_en.js zsh $DOCS/tools/build.sh SCI_Membership_Guide_EN_v1.2_261106_web SCI_Membership_Guide_EN_v1.2_261106
+SCRATCH=$W/tool PROJ=$W/sponsorship BUILDER=build_docx.js    zsh $DOCS/tools/build.sh SCI_후원안내_v1.6_261106_web SCI_후원안내_v1.6_261106
+SCRATCH=$W/tool PROJ=$W/sponsorship BUILDER=build_docx_en.js zsh $DOCS/tools/build.sh SCI_Sponsorship_Guide_EN_v1.6_261106_web SCI_Sponsorship_Guide_EN_v1.6_261106
+```
+
+확인할 것:
+
+- `pages:`가 원본과 같다(가입 3쪽, 후원 국문 4쪽, 영문 5쪽).
+- 글꼴은 Pretendard만 쓰였다.
+- diff에는 연락처와 제출처 줄만 나온다(표 안 글자 순서가 바뀌어 보이는 줄은 텍스트 추출 순서 차이다).
+
+결과를 `public/files/`의 같은 이름으로 복사한 뒤, 개인 연락처가 없는지 검사한다.
+
+```sh
+for f in public/files/*.pdf; do pdftotext "$f" - | grep -nE '010-|\+82 ?10|gmail\.com|naver\.com' && echo "LEAK $f"; done
 ```
 
 ## 브랜드

@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { asset } from "@/lib/site";
 
 /** 화살표 배지 — 브랜드 가이드 목업의 pill 버튼 패턴. */
 function ArrowBadge({ className = "" }: { className?: string }) {
@@ -43,9 +44,12 @@ export function Cta({
   variant?: keyof typeof VARIANTS;
   className?: string;
 }) {
+  // 루트 상대 경로(/files/…)는 basePath가 필요하고, PDF와 외부 링크는 새 창으로 연다.
+  const newTab = href.endsWith(".pdf") || /^https?:\/\//.test(href);
   return (
     <a
-      href={href}
+      href={href.startsWith("/") ? asset(href) : href}
+      {...(newTab ? { target: "_blank", rel: "noopener noreferrer" } : {})}
       className={`group inline-flex items-center gap-3 rounded-full py-2 pr-2 pl-6 text-sm font-semibold transition-colors duration-300 ${VARIANTS[variant]} ${className}`}
     >
       {children}
