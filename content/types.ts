@@ -38,6 +38,44 @@ export type ContactPage = {
   }[];
 };
 
+/** 사원가입·후원 페이지. 문구 출처는 sci-docs 가입안내 v1.2, 후원안내 v1.6. */
+export type Membership = {
+  kicker: string;
+  title: string;
+  lead: string;
+  jump: { join: string; support: string };
+  join: {
+    title: string;
+    lead: string;
+    head: [string, string, string];
+    types: { name: string; target: string; fee: string }[];
+    feeNote: string;
+    benefitsTitle: string;
+    benefits: string[];
+    stepsTitle: string;
+    steps: { title: string; body: string }[];
+    /** 온라인 신청(구글 폼). 국문에만 있다. */
+    apply: { label: string; url: string } | null;
+    pdfLabel: string;
+    pdf: string;
+  };
+  support: {
+    title: string;
+    lead: string;
+    principlesTitle: string;
+    principles: { title: string; body: string }[];
+    /** [유형, 주요 차이, 연간 후원액] — 금액은 사원 표처럼 오른쪽 열 */
+    head: [string, string, string];
+    tiers: { name: string; amount: string; highlight: string }[];
+    commonNote: string;
+    /** 미화 후원 안내. 환율 기준일은 아직 정해지지 않아 적지 않는다. */
+    usdNote: string;
+    pdfLabel: string;
+    pdf: string;
+  };
+  inquiryLabel: string;
+};
+
 export type SiteContent = {
   meta: {
     title: string;
@@ -155,6 +193,7 @@ export type SiteContent = {
   };
   pages: Record<Exclude<PageKey, "home">, PageMeta>;
   contactPage: ContactPage;
+  membership: Membership;
   footer: {
     tagline: string;
     addressLabel: string;

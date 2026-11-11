@@ -542,6 +542,110 @@ export const en: SiteContent = {
     ],
   },
 
+  membership: {
+    kicker: "Join & Support",
+    title: "Join & Support SCI",
+    lead: "Take part in SCI's research and policy work, as a member or as a supporter.",
+    jump: { join: "Membership", support: "Support" },
+    join: {
+      title: "Membership",
+      lead: "SCI has Individual and Corporate Members. Both are full members with voting rights in the General Assembly.",
+      head: ["Category", "Eligibility", "Annual fee"],
+      types: [
+        {
+          name: "Individual Member",
+          target:
+            "Individuals who share SCI's purpose and wish to take part in and support it as members",
+          fee: "USD 200",
+        },
+        {
+          name: "Corporate Member",
+          target:
+            "Korean and foreign companies operating in the Korean market, in fields such as manufacturing, trade, finance, securities, content and culture, exchanges and blockchain technology, that face the constraints of current rules directly in their operations",
+          fee: "USD 1,000",
+        },
+      ],
+      feeNote: "SCI provides payment details once the application is approved.",
+      benefitsTitle: "Member benefits",
+      benefits: [
+        "Priority access to SCI newsletters and research reports",
+        "Priority admission to SCI seminars, conferences and workshops",
+        "Attendance and a vote at the General Assembly, SCI's supreme deliberative body",
+      ],
+      stepsTitle: "Becoming a member",
+      steps: [
+        {
+          title: "Application",
+          body: "Fill in the application form in the guide, scan or photograph it, and email it to SCI.",
+        },
+        {
+          title: "Review and approval",
+          body: "SCI reviews the application and informs the applicant of its decision. The Board of Directors approves Corporate Members.",
+        },
+        {
+          title: "Payment of fees",
+          body: "Upon approval, SCI sends membership fee payment instructions.",
+        },
+      ],
+      apply: null,
+      pdfLabel: "Guide and application form (PDF)",
+      pdf: "/files/sci-membership-guide-en.pdf",
+    },
+    support: {
+      title: "Support",
+      lead: "SCI welcomes contributions from those who share its purpose, to support its research, education, and policy, regulatory and legislative proposals. Any individual or organization may become a supporter; SCI membership is not required.",
+      principlesTitle: "Principles",
+      principles: [
+        {
+          title: "Unrestricted contributions",
+          body: "Contributions may not be tied to any specific SCI activity.",
+        },
+        {
+          title: "Commissioned research",
+          body: "Funding tied to a specific research project is arranged separately as commissioned research, under the same principle of research independence.",
+        },
+        {
+          title: "Research independence",
+          body: "Supporters may propose research and education topics but take no part in determining research conclusions or SCI's policy recommendations.",
+        },
+        {
+          title: "Contribution cap",
+          body: "No single supporter may account for more than 30 percent of SCI's total contributions in any year, measured at year-end.",
+        },
+        {
+          title: "Funding disclosure",
+          body: "SCI discloses the composition of its funding and the scale of principal contributions in its annual report.",
+        },
+      ],
+      head: ["Tier", "What sets it apart", "Annual contribution"],
+      tiers: [
+        {
+          name: "Platinum Supporter",
+          amount: "KRW 300 million",
+          highlight:
+            "Proposes research, education, seminar, and policy or legislative topics, and new Industry Councils; seats on 3 council steering committees",
+        },
+        {
+          name: "Gold Supporter",
+          amount: "KRW 100 million",
+          highlight:
+            "Proposes a research, education or seminar topic once a year; seats on 2 council steering committees",
+        },
+        {
+          name: "Silver Supporter",
+          amount: "KRW 30 million",
+          highlight: "Takes part in the deliberations of 1 Industry Council",
+        },
+      ],
+      commonNote:
+        "All tiers receive priority admission to SCI programs and seminars, invitations to closed-door meetings, early access to research reports and regulatory updates, and briefings from the Industry Councils.",
+      usdNote: "Contributions may also be made in the USD equivalent.",
+      pdfLabel: "Sponsorship guide (PDF)",
+      pdf: "/files/sci-sponsorship-guide-en.pdf",
+    },
+    inquiryLabel: "Membership and support enquiries",
+  },
+
   footer: {
     tagline:
       "Intellect for Digital Sovereignty, Action for the Future of Finance",

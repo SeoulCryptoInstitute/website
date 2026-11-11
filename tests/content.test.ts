@@ -55,3 +55,28 @@ test("introduction PDF is linked from hero and insights", () => {
     for (const l of ["ko", "en"])
       assert.ok(existsSync(`public/files/sci-${f}-${l}.pdf`), `${f}-${l}`);
 });
+
+test("membership page carries fees, tiers and the KR-only online form", () => {
+  assert.equal(ko.membership.join.apply?.url, "https://forms.gle/dxWTD6JrnAE9BV5J7");
+  assert.equal(en.membership.join.apply, null);
+  assert.deepEqual(ko.membership.join.types.map((t) => t.fee), ["연 20만 원", "연 100만 원"]);
+  assert.deepEqual(en.membership.join.types.map((t) => t.fee), ["USD 200", "USD 1,000"]);
+  assert.deepEqual(
+    ko.membership.support.tiers.map((t) => t.amount),
+    ["연 3억 원", "연 1억 원", "연 3,000만 원"],
+  );
+  assert.equal(ko.membership.support.principles.length, 5);
+  // GuideTable은 행을 [이름, 가운데, 오른쪽 값] 순서로 그린다 — 금액 머리글은 오른쪽 열이어야 한다
+  assert.equal(ko.membership.support.head[2], "연간 후원액");
+  assert.equal(en.membership.support.head[2], "Annual contribution");
+  assert.equal(ko.membership.join.head[2], "연회비");
+  assert.equal(ko.membership.join.steps.length, 3);
+  for (const [c, l] of [
+    [ko, "ko"],
+    [en, "en"],
+  ] as const) {
+    assert.equal(c.membership.join.pdf, `/files/sci-membership-guide-${l}.pdf`);
+    assert.equal(c.membership.support.pdf, `/files/sci-sponsorship-guide-${l}.pdf`);
+    assert.doesNotMatch(JSON.stringify(c.membership), /환율|exchange rate|invoice|납입 시점/i);
+  }
+});
