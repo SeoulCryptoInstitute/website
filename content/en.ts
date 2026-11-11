@@ -11,25 +11,18 @@ export const en: SiteContent = {
 
   nav: {
     items: [
-      { id: "why-now", label: "Why Now" },
-      { id: "korea", label: "Korea" },
-      { id: "vision", label: "Vision" },
-      { id: "agenda", label: "Agenda" },
-      { id: "work", label: "How We Work" },
-      { id: "roadmap", label: "Roadmap" },
-      { id: "people", label: "People" },
-      { id: "insights", label: "Insights" },
+      { page: "home", label: "About SCI" },
+      { page: "home", hash: "people", label: "Fellows" },
+      { page: "membership", label: "Join & Support" },
+      { page: "media", label: "News & Activities" },
     ],
-    cta: "Get in touch",
+    cta: "CONTACT",
     menu: "Open menu",
     close: "Close menu",
   },
 
-  announce: {
-    text: "Crypto Hub Vision Paper 1.0 — coming soon",
-    cta: "Details",
-    href: "#insights",
-  },
+  // 공지줄. 다음 공지가 생기면 { text, cta, href }를 넣는다.
+  announce: null,
 
   hero: {
     eyebrow: "Seoul Crypto Institute",
@@ -504,8 +497,7 @@ export const en: SiteContent = {
         body: "Interviews, contributed articles and requests for materials.",
       },
     ],
-    contactNote:
-      "Contact channels are being set up. Details will be published here as soon as they are available.",
+    inquiryLabel: "Contact",
   },
 
   footer: {
@@ -517,7 +509,6 @@ export const en: SiteContent = {
       "Jung-gu, Seoul, Korea",
     ],
     contactLabel: "Contact",
-    contactPending: "To be announced",
     copyright: "Seoul Crypto Institute",
   },
 };

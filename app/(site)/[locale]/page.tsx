@@ -24,7 +24,7 @@ export default async function Page({
 
   return (
     <>
-      <Header content={content} locale={locale} />
+      <Header content={content} locale={locale} page="home" />
       <main>
         <Hero content={content} />
         <WhyNow content={content} />
@@ -37,7 +37,7 @@ export default async function Page({
         <Insights content={content} />
         <Contact content={content} />
       </main>
-      <Footer content={content} locale={locale} />
+      <Footer content={content} locale={locale} page="home" />
     </>
   );
 }

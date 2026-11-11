@@ -1,8 +1,11 @@
+import type { PageKey } from "../lib/routes";
+
 export type Locale = "ko" | "en";
 
 export type Cta = { label: string; href: string };
 
-export type NavItem = { id: string; label: string };
+/** 상단 메뉴 항목. hash가 있으면 그 페이지 안의 섹션으로 간다(예: home#people). */
+export type NavItem = { page: PageKey; hash?: string; label: string };
 
 export type Member = {
   slug: string;
@@ -124,14 +127,14 @@ export type SiteContent = {
     statement: string;
     closing: string[];
     channels: { title: string; body: string }[];
-    contactNote: string;
+    /** 공개 이메일 앞에 붙는 말 (예: "문의") */
+    inquiryLabel: string;
   };
   footer: {
     tagline: string;
     addressLabel: string;
     address: string[];
     contactLabel: string;
-    contactPending: string;
     copyright: string;
   };
 };

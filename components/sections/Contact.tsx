@@ -2,6 +2,7 @@ import { Section } from "../ui/Section";
 import { SectionHeading } from "../ui/SectionHeading";
 import { Reveal } from "../ui/Reveal";
 import { Symbol } from "../brand/Symbol";
+import { CONTACT_EMAIL } from "@/lib/site";
 import type { SiteContent } from "@/content/types";
 
 export function Contact({ content }: { content: SiteContent }) {
@@ -57,7 +58,15 @@ export function Contact({ content }: { content: SiteContent }) {
         </ul>
 
         <Reveal>
-          <p className="text-blue-soft mt-10 text-sm">{s.contactNote}</p>
+          <p className="text-blue-soft mt-10 text-sm">
+            {s.inquiryLabel}{" "}
+            <a
+              href={`mailto:${CONTACT_EMAIL}`}
+              className="font-semibold text-white underline decoration-white/30 underline-offset-4 transition-colors hover:decoration-white"
+            >
+              {CONTACT_EMAIL}
+            </a>
+          </p>
         </Reveal>
       </div>
     </Section>

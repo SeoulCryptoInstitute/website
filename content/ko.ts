@@ -12,25 +12,18 @@ export const ko: SiteContent = {
 
   nav: {
     items: [
-      { id: "why-now", label: "왜 지금인가" },
-      { id: "korea", label: "대한민국" },
-      { id: "vision", label: "비전" },
-      { id: "agenda", label: "정책 어젠다" },
-      { id: "work", label: "활동 방식" },
-      { id: "roadmap", label: "로드맵" },
-      { id: "people", label: "연구위원" },
-      { id: "insights", label: "인사이트" },
+      { page: "home", label: "SCI 소개" },
+      { page: "home", hash: "people", label: "연구위원" },
+      { page: "membership", label: "사원가입·후원" },
+      { page: "media", label: "언론보도·활동" },
     ],
-    cta: "문의하기",
+    cta: "CONTACT",
     menu: "메뉴 열기",
     close: "메뉴 닫기",
   },
 
-  announce: {
-    text: "크립토 허브 비전 백서 1.0 — 곧 공개됩니다",
-    cta: "자세히",
-    href: "#insights",
-  },
+  // 공지줄. 다음 공지가 생기면 { text, cta, href }를 넣는다.
+  announce: null,
 
   hero: {
     eyebrow: "Seoul Crypto Institute",
@@ -503,8 +496,7 @@ export const ko: SiteContent = {
         body: "인터뷰, 기고, 자료 요청 등 언론 관련 문의.",
       },
     ],
-    contactNote:
-      "연락 창구는 준비 중입니다. 공개되는 대로 이곳에 안내하겠습니다.",
+    inquiryLabel: "문의",
   },
 
   footer: {
@@ -512,7 +504,6 @@ export const ko: SiteContent = {
     addressLabel: "주소",
     address: ["서울특별시 중구 서소문로 100", "Seoul Building 3F"],
     contactLabel: "문의",
-    contactPending: "준비 중",
     copyright: "Seoul Crypto Institute",
   },
 };

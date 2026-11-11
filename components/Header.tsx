@@ -3,14 +3,18 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Logo } from "./brand/Logo";
+import { pagePath, type PageKey } from "@/lib/routes";
 import type { Locale, SiteContent } from "@/content/types";
 
 export function Header({
   content,
   locale,
+  page,
 }: {
   content: SiteContent;
   locale: Locale;
+  /** 지금 페이지. 메뉴 강조와 언어 전환(상대 언어의 같은 페이지)에 쓴다. */
+  page: PageKey;
 }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -69,40 +73,47 @@ export function Header({
             <Logo tone="dark" className="text-[15px]" />
           </Link>
 
-          <nav className="hidden items-center gap-7 xl:flex">
-            {nav.items.map((item) => (
-              <a
-                key={item.id}
-                href={`#${item.id}`}
-                className="text-[13px] font-medium text-white/70 transition-colors hover:text-white"
-              >
-                {item.label}
-              </a>
-            ))}
+          <nav className="hidden items-center gap-8 lg:flex">
+            {nav.items.map((item) => {
+              const current = item.page === page && !item.hash;
+              return (
+                <Link
+                  key={item.label}
+                  href={pagePath(locale, item.page, item.hash)}
+                  aria-current={current ? "page" : undefined}
+                  className={`text-[13px] font-medium transition-colors hover:text-white ${
+                    current ? "text-white" : "text-white/70"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
           </nav>
 
           <div className="flex items-center gap-3">
             <Link
-              href={`/${alt}`}
+              href={pagePath(alt, page)}
               className="rounded-full border border-white/25 px-3 py-1.5 text-[12px] font-semibold tracking-wide text-white/80 transition-colors hover:border-white hover:text-white"
               aria-label={`Switch to ${meta.altLocaleLabel}`}
             >
               {meta.altLocaleLabel}
             </Link>
 
-            <a
-              href="#contact"
-              className="hidden rounded-full bg-white px-4 py-1.5 text-[13px] font-semibold text-navy transition-colors hover:bg-blue hover:text-white sm:inline-block"
+            <Link
+              href={pagePath(locale, "contact")}
+              aria-current={page === "contact" ? "page" : undefined}
+              className="hidden rounded-full bg-white px-4 py-1.5 text-[13px] font-semibold tracking-wide text-navy transition-colors hover:bg-blue hover:text-white sm:inline-block"
             >
               {nav.cta}
-            </a>
+            </Link>
 
             <button
               type="button"
               onClick={() => setOpen((v) => !v)}
               aria-label={open ? nav.close : nav.menu}
               aria-expanded={open}
-              className="flex size-9 items-center justify-center text-white xl:hidden"
+              className="flex size-9 items-center justify-center text-white lg:hidden"
             >
               <svg viewBox="0 0 20 20" className="size-5 stroke-current">
                 {open ? (
@@ -117,25 +128,25 @@ export function Header({
       </header>
 
       {open ? (
-        <div className="bg-navy h-[calc(100dvh-4rem)] overflow-y-auto xl:hidden">
+        <div className="bg-navy h-[calc(100dvh-4rem)] overflow-y-auto lg:hidden">
           <nav className="container-sci grid gap-1 py-8">
             {nav.items.map((item) => (
-              <a
-                key={item.id}
-                href={`#${item.id}`}
+              <Link
+                key={item.label}
+                href={pagePath(locale, item.page, item.hash)}
                 onClick={() => setOpen(false)}
                 className="border-b border-white/10 py-4 text-xl font-semibold text-white"
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
-            <a
-              href="#contact"
+            <Link
+              href={pagePath(locale, "contact")}
               onClick={() => setOpen(false)}
               className="text-blue-soft mt-6 py-4 text-xl font-semibold"
             >
               {nav.cta}
-            </a>
+            </Link>
           </nav>
         </div>
       ) : null}
