@@ -1,0 +1,37 @@
+name: CI
+
+# main 브랜치 룰셋이 이 잡(lint-and-build)의 통과를 머지 조건으로 요구한다.
+# 잡 이름을 바꾸면 룰셋의 required status check도 같이 바꿔야 한다.
+on:
+  pull_request:
+    branches: [main, dev]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  lint-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Install Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      # 운영과 같은 기본값(커스텀 도메인, 빈 basePath)으로 빌드한다.
+      - name: Build static export
+        run: npm run build

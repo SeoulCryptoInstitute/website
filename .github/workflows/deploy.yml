@@ -1,7 +1,8 @@
 name: Deploy to GitHub Pages
 
 on:
-  # 배포는 main 푸시로만 일어난다. 평소 작업은 기본 브랜치인 dev에서 한다.
+  # 배포는 main 푸시로만 일어난다. main은 룰셋상 dev → main PR 머지로만 바뀐다.
+  # 평소 작업은 기본 브랜치인 dev에서 하고, 미리보기는 preview.yml이 맡는다.
   push:
     branches: [main]
   # Actions 탭에서 수동 실행

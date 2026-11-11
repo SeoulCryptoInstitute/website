@@ -1,0 +1,78 @@
+name: Deploy preview
+
+on:
+  # dev에 올라온 내용은 곧바로 미리보기 사이트에 반영된다.
+  push:
+    branches: [dev]
+  # Actions 탭에서 브랜치를 골라 실행하면 그 브랜치를 미리보기로 올린다.
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# 미리보기는 마지막 것만 의미가 있다. 밀린 배포는 취소한다.
+concurrency:
+  group: preview
+  cancel-in-progress: true
+
+env:
+  # GitHub Pages는 저장소당 사이트가 하나라, 미리보기는 별도 저장소의 Pages로 띄운다.
+  # 그 저장소에는 빌드 결과만 gh-pages 브랜치로 들어간다(소스는 이 저장소뿐).
+  PREVIEW_REPO: SeoulCryptoInstitute/website-preview
+  PREVIEW_BASE_PATH: /website-preview
+  PREVIEW_SITE_URL: https://seoulcryptoinstitute.github.io/website-preview
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: preview
+      url: https://seoulcryptoinstitute.github.io/website-preview/ko
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Install Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static export
+        run: npm run build
+        env:
+          NEXT_PUBLIC_BASE_PATH: ${{ env.PREVIEW_BASE_PATH }}
+          # github.io 호스트라 lib/site.ts의 IS_TEMPORARY_HOST가 켜지고 noindex가 붙는다.
+          NEXT_PUBLIC_SITE_URL: ${{ env.PREVIEW_SITE_URL }}
+
+      - name: Push build to the preview repository
+        env:
+          # website-preview 저장소에만 쓰기 권한이 있는 deploy key (preview 환경 시크릿)
+          DEPLOY_KEY: ${{ secrets.PREVIEW_DEPLOY_KEY }}
+        run: |
+          set -euo pipefail
+
+          mkdir -p ~/.ssh
+          printf '%s\n' "$DEPLOY_KEY" > ~/.ssh/preview_deploy_key
+          chmod 600 ~/.ssh/preview_deploy_key
+          # github.com 호스트 키는 HTTPS로 받은 공식 목록으로 고정한다(ssh-keyscan을 그대로 믿지 않는다).
+          curl -fsSL https://api.github.com/meta \
+            | jq -r '.ssh_keys[] | "github.com " + .' >> ~/.ssh/known_hosts
+          export GIT_SSH_COMMAND="ssh -i ~/.ssh/preview_deploy_key -o IdentitiesOnly=yes"
+
+          cd out
+          # Pages 브랜치 빌드는 Jekyll을 거치는데, Jekyll은 _next/ 같은 밑줄 디렉터리를 버린다.
+          touch .nojekyll
+
+          # 매번 커밋 하나짜리 브랜치로 덮어쓴다. 이력은 이 저장소의 Actions 기록에 남는다.
+          git init -q -b gh-pages
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -q \
+            -m "Preview of ${GITHUB_REF_NAME} @ ${GITHUB_SHA::7}" \
+            -m "${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/commit/${GITHUB_SHA}"
+          git push -f "git@github.com:${PREVIEW_REPO}.git" gh-pages
