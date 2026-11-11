@@ -80,3 +80,27 @@ test("membership page carries fees, tiers and the KR-only online form", () => {
     assert.doesNotMatch(JSON.stringify(c.membership), /환율|exchange rate|invoice|납입 시점/i);
   }
 });
+
+test("fellows and advisers follow introduction v1.2", () => {
+  assert.deepEqual(
+    ko.people.members.map((m) => m.name),
+    ["강형구", "김준현", "박문구", "박종백", "백광원", "안수현", "오현옥", "유민호", "이석준",
+      "이준행", "이효진", "장중혁", "진창호", "최기억", "최철", "필립 갠트", "홍준기"],
+  );
+  assert.deepEqual(ko.people.advisors.map((m) => m.name), ["오세현", "Yesha Yadav"]);
+  assert.deepEqual(en.people.members.map((m) => m.slug), ko.people.members.map((m) => m.slug));
+  assert.deepEqual(en.people.advisors.map((m) => m.slug), ko.people.advisors.map((m) => m.slug));
+  const enNames = en.people.members.map((m) => m.name);
+  for (const n of ["Joong-Hyuk Chang", "Jun-Ki Hong", "Hyun-Ok Oh", "Min-Ho Yoo", "Chang-Ho Jin",
+    "Soo-Hyun Ahn", "Hyo-Jin Lee", "Chul Choi"])
+    assert.ok(enNames.includes(n), n);
+  const pos = Object.fromEntries(
+    ko.people.members.filter((m) => m.position).map((m) => [m.name, m.position]),
+  );
+  assert.deepEqual(pos, { 강형구: "부대표", 김준현: "사무총장", 박종백: "대표", 장중혁: "부대표", 홍준기: "부대표" });
+  for (const m of [...ko.people.members, ...ko.people.advisors])
+    assert.ok(existsSync(`public/people/${m.slug}.jpg`), m.slug);
+  assert.ok(!existsSync("public/people/lee-jongsub.jpg"));
+  for (const m of [...ko.people.members, ...en.people.members, ...ko.people.advisors, ...en.people.advisors])
+    assert.ok(!m.bio.startsWith(m.role), m.slug);
+});

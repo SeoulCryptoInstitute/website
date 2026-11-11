@@ -10,6 +10,9 @@ export type NavItem = { page: PageKey; hash?: string; label: string };
 export type Member = {
   slug: string;
   name: string;
+  /** SCI 안의 직책(대표, 부대표, 사무총장). 이름 위에 작게 붙는다. */
+  position?: string;
+  /** 소속과 직함. bio 첫머리에 다시 쓰지 않는다. */
   role: string;
   bio: string;
 };
@@ -178,6 +181,9 @@ export type SiteContent = {
     lead: string;
     note: string;
     members: Member[];
+    /** 연구위원 아래 따로 묶는 고문 소제목. */
+    advisorsTitle: string;
+    advisors: Member[];
   };
   insights: {
     num: string;

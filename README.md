@@ -18,7 +18,7 @@ content/ko.ts,en.ts    모든 카피. types.ts의 SiteContent 형태를 공유�
 components/brand/      Symbol(Vector Core), Logo
 components/sections/   Hero → Contact 9개 섹션
 components/ui/         Section, SectionHeading, Cta, Reveal
-public/people/         연구위원 포트레이트 (4:5, grayscale은 CSS에서 적용)
+public/people/         연구위원·고문 포트레이트 (4:5 JPEG, slug.jpg. grayscale은 CSS에서 적용)
 public/files/          내려받는 PDF (소개서, 가입·후원 안내 웹용 판)
 ```
 
