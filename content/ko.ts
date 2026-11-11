@@ -657,7 +657,7 @@ export const ko: SiteContent = {
           name: "Platinum Supporter",
           amount: "연 3억 원",
           highlight:
-            "연구·교육·세미나와 정책·법안 주제 제안, 협의회 신설 제안, 3개 협의회 운영위원회",
+            "연구·교육·세미나와 정책·법안 주제 제안(각 연 1회), 협의회 신설 제안, 3개 협의회 운영위원회",
         },
         {
           name: "Gold Supporter",
@@ -672,7 +672,7 @@ export const ko: SiteContent = {
         },
       ],
       commonNote:
-        "세 유형 모두 SCI 주최 교육·세미나 우선 참석, 정부·국회·산업계·학계 비공개 행사 초청, 연구 리포트 사전 수령과 규제동향 리포트, 협의회 주제 건의와 브리핑을 받습니다.",
+        "세 유형 모두 SCI 주최 교육·세미나 우선 참석, 정부·국회·산업계·학계 비공개 행사 초청, 연구 리포트 사전 수령과 규제동향 리포트 수령, 협의회 연구·교육 주제 건의, 협의회 정책·법령 개선 작업 브리핑과 의견 개진 혜택이 있습니다.",
       usdNote: "미화(USD)로는 원화 후원액에 상응하는 금액으로 후원할 수 있습니다.",
       pdfLabel: "후원 안내서 PDF",
       pdf: "/files/sci-sponsorship-guide-ko.pdf",

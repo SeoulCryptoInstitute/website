@@ -104,3 +104,14 @@ test("fellows and advisers follow introduction v1.2", () => {
   for (const m of [...ko.people.members, ...en.people.members, ...ko.people.advisors, ...en.people.advisors])
     assert.ok(!m.bio.startsWith(m.role), m.slug);
 });
+
+test("supporter tiers keep the guide's once-a-year limits and every common benefit", () => {
+  // 후원 안내서 v1.6 Ⅳ. 유형별 혜택 한눈에 보기
+  const platinum = (c: typeof ko) => c.membership.support.tiers[0];
+  assert.match(platinum(ko).highlight, /연 1회/);
+  assert.match(platinum(en).highlight, /once a year/);
+  for (const phrase of ["주제 건의", "브리핑", "의견 개진"])
+    assert.ok(ko.membership.support.commonNote.includes(phrase), phrase);
+  for (const phrase of ["suggest research and education topics", "briefings", "opportunity to comment"])
+    assert.ok(en.membership.support.commonNote.includes(phrase), phrase);
+});

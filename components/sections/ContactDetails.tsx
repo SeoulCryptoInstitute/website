@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Section } from "../ui/Section";
+import { ContactEmail } from "../ui/ContactEmail";
 import { CONTACT_EMAIL } from "@/lib/site";
 import { pagePath } from "@/lib/routes";
 import type { Locale, SiteContent } from "@/content/types";
@@ -21,9 +22,9 @@ export function ContactDetails({
       </p>
       <a
         href={`mailto:${CONTACT_EMAIL}`}
-        className="font-display text-navy hover:text-blue mt-4 inline-block text-[clamp(1.5rem,4.6vw,3.25rem)] leading-[1.15] font-extrabold tracking-[-0.03em] break-all transition-colors"
+        className="font-display text-navy hover:text-blue mt-4 inline-block text-[clamp(1.5rem,4.6vw,3.25rem)] leading-[1.15] font-extrabold tracking-[-0.03em] [overflow-wrap:anywhere] transition-colors"
       >
-        {CONTACT_EMAIL}
+        <ContactEmail />
       </a>
 
       <h2 className="text-navy mt-20 text-xl font-bold tracking-[-0.02em]">

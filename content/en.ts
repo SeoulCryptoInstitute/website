@@ -655,7 +655,7 @@ export const en: SiteContent = {
           name: "Platinum Supporter",
           amount: "KRW 300 million",
           highlight:
-            "Proposes research, education, seminar, and policy or legislative topics, and new Industry Councils; seats on 3 council steering committees",
+            "Proposes research, education, seminar, and policy or legislative topics (once a year each), and new Industry Councils; seats on 3 council steering committees",
         },
         {
           name: "Gold Supporter",
@@ -670,7 +670,7 @@ export const en: SiteContent = {
         },
       ],
       commonNote:
-        "All tiers receive priority admission to SCI programs and seminars, invitations to closed-door meetings, early access to research reports and regulatory updates, and briefings from the Industry Councils.",
+        "All tiers receive priority admission to SCI programs and seminars, invitations to closed-door meetings, early access to research reports and regulatory updates, the chance to suggest research and education topics to the Industry Councils, and briefings on the councils' reform work with the opportunity to comment.",
       usdNote: "Contributions may also be made in the USD equivalent.",
       pdfLabel: "Sponsorship guide (PDF)",
       pdf: "/files/sci-sponsorship-guide-en.pdf",

@@ -1,5 +1,6 @@
 import { Section } from "../ui/Section";
 import { Cta } from "../ui/Cta";
+import { ContactEmail } from "../ui/ContactEmail";
 import { CONTACT_EMAIL } from "@/lib/site";
 import type { SiteContent } from "@/content/types";
 
@@ -184,9 +185,9 @@ export function MembershipGuide({ content }: { content: SiteContent }) {
         </p>
         <a
           href={`mailto:${CONTACT_EMAIL}`}
-          className="font-display text-navy hover:text-blue mt-3 inline-block text-[clamp(1.4rem,3.6vw,2.25rem)] font-extrabold tracking-[-0.03em] break-all transition-colors"
+          className="font-display text-navy hover:text-blue mt-3 inline-block text-[clamp(1.4rem,3.6vw,2.25rem)] font-extrabold tracking-[-0.03em] [overflow-wrap:anywhere] transition-colors"
         >
-          {CONTACT_EMAIL}
+          <ContactEmail />
         </a>
       </Section>
     </>

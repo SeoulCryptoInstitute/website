@@ -77,6 +77,20 @@ test("press links are all present", () => {
   for (const u of urls) assert.ok(html.includes(`href="${u.replaceAll("&", "&amp;")}"`), u);
 });
 
+test("the large contact email breaks only after the @", () => {
+  // 좁은 폰에서 "contact@seoulcrypto.institu / te"처럼 단어 중간에서 끊기면 안 된다.
+  for (const l of LOCALES)
+    for (const p of ["/contact", "/membership"]) {
+      const html = read(pageFile(l, p));
+      const big = [...html.matchAll(/<a[^>]*href="mailto:[^"]*"[^>]*>[^]*?<\/a>/g)]
+        .map((m) => m[0])
+        .filter((a) => a.includes("text-[clamp"));
+      assert.equal(big.length, 1, `${pageFile(l, p)}: one large email link`);
+      assert.ok(big[0].includes("contact@<wbr/>seoulcrypto.institute"), `${pageFile(l, p)}: break point after @`);
+      assert.ok(!big[0].includes("break-all"), `${pageFile(l, p)}: no break-all`);
+    }
+});
+
 test("sitemap lists eight pages", () => {
   const xml = read(join(OUT, "sitemap.xml"));
   const locs = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
