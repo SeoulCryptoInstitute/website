@@ -25,6 +25,14 @@ export const SITE_URL =
  */
 export const IS_TEMPORARY_HOST = new URL(SITE_URL).hostname.endsWith(".github.io");
 
+/**
+ * 사이트 경로를 절대 URL로 만든다. SITE_URL에 basePath가 포함돼 있으므로 그대로 이어 붙인다.
+ * metadataBase를 거치지 않는 곳(robots.txt, sitemap.xml)에서 쓴다.
+ */
+export function absoluteUrl(path: string): string {
+  return `${SITE_URL.replace(/\/+$/, "")}${path}`;
+}
+
 /** public/ 자산 경로에 basePath를 붙인다. next/image와 raw <img>는 자동 처리되지 않는다. */
 export function asset(path: string): string {
   return `${BASE_PATH}${path}`;
