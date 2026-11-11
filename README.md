@@ -19,6 +19,7 @@ components/brand/      Symbol(Vector Core), Logo
 components/sections/   Hero → Contact 9개 섹션
 components/ui/         Section, SectionHeading, Cta, Reveal
 public/people/         연구위원 포트레이트 (4:5, grayscale은 CSS에서 적용)
+public/files/          내려받는 PDF (소개서, 가입·후원 안내 웹용 판)
 ```
 
 카피를 고칠 때는 `content/ko.ts`와 `content/en.ts`를 함께 수정한다. 두 파일은 같은 타입을 만족해야 하므로 한쪽만 필드를 늘리면 타입 에러가 난다.
@@ -61,6 +62,62 @@ github.io 주소, 즉 미리보기에는 `noindex, nofollow`가 붙는다(`lib/s
 ```bash
 npm run build
 npx serve out
+```
+
+## 내려받는 PDF (`public/files/`)
+
+| 파일 | 원본 (sci-docs) |
+| --- | --- |
+| `sci-introduction-{ko,en}.pdf` | `introduction/final/SCI_소개서_한글_v1.2_261024.pdf`, `SCI_Introduction_EN_v1.2_261024.pdf` 그대로 |
+| `sci-membership-guide-{ko,en}.pdf` | `membership/revision/SCI_사원가입안내_v1.2_261106`, `SCI_Membership_Guide_EN_v1.2_261106`의 웹용 판 |
+| `sci-sponsorship-guide-{ko,en}.pdf` | `sponsorship/revision/SCI_후원안내_v1.6_261106`, `SCI_Sponsorship_Guide_EN_v1.6_261106`의 웹용 판 |
+
+웹용 판은 원본과 내용이 같고 연락처만 다르다. 원본의 문의 표(사무총장·사무국장 휴대폰과 개인 메일)와 가입 신청서 제출처를 `contact@seoulcrypto.institute` 하나로 바꿨다. 개인 연락처는 사이트에도 PDF에도 올리지 않는다.
+
+### 웹용 PDF 다시 만들기
+
+안내서가 새 버전으로 바뀌면 sci-docs의 빌드 도구로 다시 만든다. sci-docs 원본은 건드리지 않고, 밖의 작업 폴더에서 빌더 복사본만 고친다.
+
+```sh
+DOCS=~/dev/sci/sci-docs
+W=$(mktemp -d)                                  # sci-docs 밖의 작업 폴더
+zsh $DOCS/tools/setup.sh $W/tool                 # docx(npm), Pretendard를 넣은 LibreOffice 프로필
+
+for p in membership sponsorship; do
+  mkdir -p $W/$p/revision
+  cp -R $DOCS/$p/assets $W/$p/                   # 빌더·배너·QR 복사본
+  cp $DOCS/$p/revision/*.pdf $W/$p/revision/     # 원본과 비교하려고 함께 둔다
+done
+```
+
+복사본 빌더 4개(`$W/{membership,sponsorship}/assets/build_docx{,_en}.js`)를 고친다.
+
+- `SUBMIT_EMAIL`(가입안내)을 `"contact@seoulcrypto.institute"`로 바꾼다.
+- `CONTACTS`를 한 행으로 바꾼다. 국문은 `[["SCI 사무국", "contact@seoulcrypto.institute"]]`, 영문은 `[["SCI Secretariat", "contact@seoulcrypto.institute"]]`이다.
+- 바로 아래 `cw`는 `[2000, TEXT_W - 2000]`로 바꾼다.
+- 표 머리글은 `["구분", "이메일"]` / `["Role", "Email"]`로 바꾼다.
+- 행 서식의 `i === 1 ? { bold … }` 분기를 지운다.
+- 국문 가입안내 별지 하단 문장도 고친다. `${SUBMIT_EMAIL}으로`를 `${SUBMIT_EMAIL}로`로 바꾸고, 같은 줄의 `${FORM_URL}`을 `${FORM_URL.replace("https://", "")}`로 바꾼다. 주소가 길어져 줄이 넘치면 신청서가 4쪽이 되기 때문이다.
+
+빌드하고 원본과 비교한다. 결과는 `$W/<p>/revision/<이름>_web.pdf`에 생긴다.
+
+```sh
+SCRATCH=$W/tool PROJ=$W/membership  BUILDER=build_docx.js    zsh $DOCS/tools/build.sh SCI_사원가입안내_v1.2_261106_web SCI_사원가입안내_v1.2_261106
+SCRATCH=$W/tool PROJ=$W/membership  BUILDER=build_docx_en.js zsh $DOCS/tools/build.sh SCI_Membership_Guide_EN_v1.2_261106_web SCI_Membership_Guide_EN_v1.2_261106
+SCRATCH=$W/tool PROJ=$W/sponsorship BUILDER=build_docx.js    zsh $DOCS/tools/build.sh SCI_후원안내_v1.6_261106_web SCI_후원안내_v1.6_261106
+SCRATCH=$W/tool PROJ=$W/sponsorship BUILDER=build_docx_en.js zsh $DOCS/tools/build.sh SCI_Sponsorship_Guide_EN_v1.6_261106_web SCI_Sponsorship_Guide_EN_v1.6_261106
+```
+
+확인할 것:
+
+- `pages:`가 원본과 같다(가입 3쪽, 후원 국문 4쪽, 영문 5쪽).
+- 글꼴은 Pretendard만 쓰였다.
+- diff에는 연락처와 제출처 줄만 나온다(표 안 글자 순서가 바뀌어 보이는 줄은 텍스트 추출 순서 차이다).
+
+결과를 `public/files/`의 같은 이름으로 복사한 뒤, 개인 연락처가 없는지 검사한다.
+
+```sh
+for f in public/files/*.pdf; do pdftotext "$f" - | grep -nE '010-|\+82 ?10|gmail\.com|naver\.com' && echo "LEAK $f"; done
 ```
 
 ## 브랜드

@@ -30,7 +30,7 @@ export const en: SiteContent = {
     definition:
       "SCI is the intellectual and practical center of gravity for Korea's emergence as a leading jurisdiction in digital assets and the financial order to come.",
     lead: "We are launching not as another think tank, but as an action tank driving the crypto transformation of Korean finance.",
-    primary: { label: "Vision Paper 1.0", href: "#insights" },
+    primary: { label: "SCI Introduction", href: "/files/sci-introduction-en.pdf" },
     secondary: { label: "Work with SCI", href: "#contact" },
   },
 
@@ -453,10 +453,11 @@ export const en: SiteContent = {
     comingSoon: "Coming soon",
     items: [
       {
-        tag: "White Paper",
-        title: "Crypto Hub Vision Paper 1.0",
-        body: "SCI's first public document, setting out the strategy and legislative agenda for Korea's emergence as a G2 crypto hub.",
-        status: "Coming soon",
+        tag: "Introduction",
+        title: "SCI Introduction",
+        body: "SCI's official introduction: why it is needed now, what it researches and proposes, how it works and who is involved (v1.2).",
+        status: "Download PDF",
+        href: "/files/sci-introduction-en.pdf",
       },
       {
         tag: "Policy Brief",

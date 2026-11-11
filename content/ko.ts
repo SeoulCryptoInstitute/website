@@ -31,7 +31,7 @@ export const ko: SiteContent = {
     definition:
       "SCI는 대한민국이 디지털 자산과 금융 질서의 주도국가로 도약하기 위한 지적·실천적 구심점입니다.",
     lead: "우리는 ‘씽크탱크(Think Tank)’를 넘어, 대한민국 금융의 크립토 트랜스포메이션을 이끄는 ‘액션탱크(Action Tank)’로 출범합니다.",
-    primary: { label: "비전 백서 1.0", href: "#insights" },
+    primary: { label: "SCI 소개서", href: "/files/sci-introduction-ko.pdf" },
     secondary: { label: "SCI와 함께하기", href: "#contact" },
   },
 
@@ -452,10 +452,11 @@ export const ko: SiteContent = {
     comingSoon: "곧 공개",
     items: [
       {
-        tag: "White Paper",
-        title: "크립토 허브 비전 백서 1.0",
-        body: "대한민국이 G2 크립토 허브로 도약하기 위한 전략과 입법 과제를 담은 SCI의 첫 번째 공개 문서입니다.",
-        status: "곧 공개",
+        tag: "Introduction",
+        title: "SCI 소개서",
+        body: "SCI가 왜 지금 필요한지, 무엇을 연구하고 제안하는지, 어떻게 운영되고 누가 함께하는지를 담은 공식 소개서입니다(v1.2).",
+        status: "PDF 다운로드",
+        href: "/files/sci-introduction-ko.pdf",
       },
       {
         tag: "Policy Brief",

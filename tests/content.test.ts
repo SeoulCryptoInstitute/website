@@ -1,5 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
+import { existsSync } from "node:fs";
 import { ko } from "../content/ko.ts";
 import { en } from "../content/en.ts";
 
@@ -40,4 +41,17 @@ test("contact page lists three topics and links membership", () => {
     for (const p of ["membership", "media", "contact"] as const)
       assert.ok(c.pages[p].title && c.pages[p].description, p);
   }
+});
+
+test("introduction PDF is linked from hero and insights", () => {
+  for (const [c, l] of [
+    [ko, "ko"],
+    [en, "en"],
+  ] as const) {
+    assert.equal(c.hero.primary.href, `/files/sci-introduction-${l}.pdf`);
+    assert.equal(c.insights.items[0].href, `/files/sci-introduction-${l}.pdf`);
+  }
+  for (const f of ["introduction", "membership-guide", "sponsorship-guide"])
+    for (const l of ["ko", "en"])
+      assert.ok(existsSync(`public/files/sci-${f}-${l}.pdf`), `${f}-${l}`);
 });

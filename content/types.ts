@@ -134,7 +134,14 @@ export type SiteContent = {
     title: string;
     lead: string;
     comingSoon: string;
-    items: { tag: string; title: string; body: string; status: string }[];
+    /** href가 있으면 카드 전체가 그 파일(새 창)로 연결된다. */
+    items: {
+      tag: string;
+      title: string;
+      body: string;
+      status: string;
+      href?: string;
+    }[];
   };
   contact: {
     num: string;
