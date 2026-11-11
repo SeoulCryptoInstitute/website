@@ -648,6 +648,16 @@ export const ko: SiteContent = {
     inquiryLabel: "가입·후원 문의",
   },
 
+  media: {
+    kicker: "News & Activities",
+    title: "언론보도·활동",
+    lead: "SCI의 활동과 그에 대한 언론보도를 행사별로 모았습니다.",
+    coverageLabel: "{n}개 매체 보도",
+    sameStoryLabel: "같은 기사",
+    photosLabel: "사진 보도",
+    koreanTag: null,
+  },
+
   footer: {
     tagline: "디지털 주권을 설계하는 지성, 금융의 미래를 깨우는 실천",
     addressLabel: "주소",

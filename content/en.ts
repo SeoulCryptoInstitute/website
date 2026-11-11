@@ -646,6 +646,16 @@ export const en: SiteContent = {
     inquiryLabel: "Membership and support enquiries",
   },
 
+  media: {
+    kicker: "News & Activities",
+    title: "News & Activities",
+    lead: "SCI's activities and the press coverage of each, grouped by event. The articles are in Korean.",
+    coverageLabel: "Covered by {n} outlets",
+    sameStoryLabel: "Also in",
+    photosLabel: "Photo coverage",
+    koreanTag: "Korean",
+  },
+
   footer: {
     tagline:
       "Intellect for Digital Sovereignty, Action for the Future of Finance",

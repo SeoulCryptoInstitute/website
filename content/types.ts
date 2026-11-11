@@ -76,6 +76,19 @@ export type Membership = {
   inquiryLabel: string;
 };
 
+/** 언론보도·활동 페이지의 문구. 기사 데이터는 content/press.ts에 있다. */
+export type MediaPage = {
+  kicker: string;
+  title: string;
+  lead: string;
+  /** "{n}개 매체 보도" — {n}에 매체 수가 들어간다. SiteContent는 클라이언트 컴포넌트로도 넘어가므로 함수 대신 문자열로 둔다. */
+  coverageLabel: string;
+  sameStoryLabel: string;
+  photosLabel: string;
+  /** 영문 페이지에서 한국어 기사 제목 옆에 붙는 표시. 국문은 null. */
+  koreanTag: string | null;
+};
+
 export type SiteContent = {
   meta: {
     title: string;
@@ -194,6 +207,7 @@ export type SiteContent = {
   pages: Record<Exclude<PageKey, "home">, PageMeta>;
   contactPage: ContactPage;
   membership: Membership;
+  media: MediaPage;
   footer: {
     tagline: string;
     addressLabel: string;
