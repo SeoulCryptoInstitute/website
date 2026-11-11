@@ -499,6 +499,47 @@ export const ko: SiteContent = {
     inquiryLabel: "문의",
   },
 
+  pages: {
+    membership: {
+      title: "사원가입·후원 — SCI · Seoul Crypto Institute",
+      description:
+        "SCI 개인·법인 사원 가입과 후원 안내입니다. 연회비와 혜택, 가입 절차, 후원 유형과 원칙을 확인하고 안내서를 내려받을 수 있습니다.",
+    },
+    media: {
+      title: "언론보도·활동 — SCI · Seoul Crypto Institute",
+      description:
+        "SCI의 활동과 언론보도를 모았습니다. 2026년 10월 창립 세미나 보도부터 정리했습니다.",
+    },
+    contact: {
+      title: "CONTACT — SCI · Seoul Crypto Institute",
+      description:
+        "언론·취재, 사원가입·후원, 연구 협력 문의는 contact@seoulcrypto.institute로 보내 주세요.",
+    },
+  },
+
+  contactPage: {
+    kicker: "Contact",
+    title: "SCI에 문의하기",
+    lead: "모든 문의는 이메일 하나로 받습니다. 내용을 적어 보내 주시면 확인 후 답변드리겠습니다.",
+    emailLabel: "이메일",
+    topicsTitle: "이런 문의를 받습니다",
+    topics: [
+      {
+        title: "언론·취재",
+        body: "인터뷰, 기고, 자료 요청 등 언론 관련 문의",
+      },
+      {
+        title: "사원가입·후원",
+        body: "개인·법인 사원 가입과 후원에 관한 문의",
+        link: { label: "사원가입·후원 안내 보기", page: "membership" },
+      },
+      {
+        title: "연구 협력·강연·기타",
+        body: "공동 연구와 정책 협력, 강연 요청, 그 밖의 문의",
+      },
+    ],
+  },
+
   footer: {
     tagline: "디지털 주권을 설계하는 지성, 금융의 미래를 깨우는 실천",
     addressLabel: "주소",

@@ -22,6 +22,22 @@ export type AgendaItem = {
   body: string;
 };
 
+/** 하위 페이지의 <title>과 description. */
+export type PageMeta = { title: string; description: string };
+
+export type ContactPage = {
+  kicker: string;
+  title: string;
+  lead: string;
+  emailLabel: string;
+  topicsTitle: string;
+  topics: {
+    title: string;
+    body: string;
+    link?: { label: string; page: PageKey };
+  }[];
+};
+
 export type SiteContent = {
   meta: {
     title: string;
@@ -130,6 +146,8 @@ export type SiteContent = {
     /** 공개 이메일 앞에 붙는 말 (예: "문의") */
     inquiryLabel: string;
   };
+  pages: Record<Exclude<PageKey, "home">, PageMeta>;
+  contactPage: ContactPage;
   footer: {
     tagline: string;
     addressLabel: string;

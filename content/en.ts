@@ -500,6 +500,47 @@ export const en: SiteContent = {
     inquiryLabel: "Contact",
   },
 
+  pages: {
+    membership: {
+      title: "Join & Support — SCI · Seoul Crypto Institute",
+      description:
+        "How to join SCI as an individual or corporate member, or support its work: fees, benefits, the application process, supporter tiers and principles, with downloadable guides.",
+    },
+    media: {
+      title: "News & Activities — SCI · Seoul Crypto Institute",
+      description:
+        "SCI's activities and press coverage, starting with the October 2026 launch seminar.",
+    },
+    contact: {
+      title: "Contact — SCI · Seoul Crypto Institute",
+      description:
+        "Press, membership, sponsorship and research enquiries: contact@seoulcrypto.institute.",
+    },
+  },
+
+  contactPage: {
+    kicker: "Contact",
+    title: "Contact SCI",
+    lead: "We take every enquiry at a single address. Write to us and we will get back to you.",
+    emailLabel: "Email",
+    topicsTitle: "What to write to us about",
+    topics: [
+      {
+        title: "Press & media",
+        body: "Interviews, contributed articles and requests for materials.",
+      },
+      {
+        title: "Membership & support",
+        body: "Individual and corporate membership, and supporting SCI.",
+        link: { label: "See how to join", page: "membership" },
+      },
+      {
+        title: "Research, talks & other",
+        body: "Joint research, policy collaboration, speaking requests and anything else.",
+      },
+    ],
+  },
+
   footer: {
     tagline:
       "Intellect for Digital Sovereignty, Action for the Future of Finance",

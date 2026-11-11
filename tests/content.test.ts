@@ -32,3 +32,12 @@ test("announce bar is off", () => {
 test("no personal contact details in content", () => {
   assert.doesNotMatch(JSON.stringify([ko, en]), PERSONAL);
 });
+
+test("contact page lists three topics and links membership", () => {
+  for (const c of [ko, en]) {
+    assert.equal(c.contactPage.topics.length, 3);
+    assert.equal(c.contactPage.topics[1].link?.page, "membership");
+    for (const p of ["membership", "media", "contact"] as const)
+      assert.ok(c.pages[p].title && c.pages[p].description, p);
+  }
+});
